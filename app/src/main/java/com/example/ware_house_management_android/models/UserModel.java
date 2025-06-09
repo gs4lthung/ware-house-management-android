@@ -8,6 +8,8 @@ public class UserModel {
     private String email;
     private UserRoleEnum role;
 
+
+
     public UserModel(String id, String fullName, String email, UserRoleEnum role) {
         this.id = id;
         this.fullName = fullName;

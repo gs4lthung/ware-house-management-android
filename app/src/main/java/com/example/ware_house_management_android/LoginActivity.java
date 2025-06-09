@@ -1,6 +1,8 @@
 package com.example.ware_house_management_android;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,7 +33,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        loginPresenter = new LoginPresenter(this,this);
+        loginPresenter = new LoginPresenter(this, this);
 
         emailEditText = findViewById(R.id.login_et_email);
         passwordEditText = findViewById(R.id.login_et_password);
@@ -41,6 +43,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
         loginButton.setOnClickListener(this);
         signUpTextView.setOnClickListener(this);
+
+        loginPresenter.checkAlreadyLogin();
     }
 
     @Override

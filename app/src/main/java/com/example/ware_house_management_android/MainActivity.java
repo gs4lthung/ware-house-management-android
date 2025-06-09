@@ -1,10 +1,17 @@
 package com.example.ware_house_management_android;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ware_house_management_android.contracts.LogoutContract;
+import com.example.ware_house_management_android.contracts.SignupContract;
+import com.example.ware_house_management_android.models.UserModel;
+import com.example.ware_house_management_android.presenters.LogoutPresenter;
+import com.example.ware_house_management_android.utils.UserUtil;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -17,8 +24,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ware_house_management_android.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SignupContract.View, LogoutContract.View {
 
+    private LogoutPresenter logoutPresenter;
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
@@ -49,12 +57,26 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        UserModel currentUser = UserUtil.currentUser(this);
+        View headerView = navigationView.getHeaderView(0);
+        TextView titleTextView = headerView.findViewById(R.id.title_textView);
+        titleTextView.setText(currentUser.getFullName());
+
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        logoutPresenter = new LogoutPresenter(this, this);
+        MenuItem logoutItem = menu.findItem(R.id.action_logout);
+        logoutItem.setOnMenuItemClickListener(item -> {
+            logoutPresenter.logout();
+            return true;
+        });
+
         return true;
     }
 
@@ -63,5 +85,36 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public void showLogoutSuccess(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        finish();
+    }
+
+    @Override
+    public void showLogoutError(String error) {
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showSignupSuccess(String message) {
+
+    }
+
+    @Override
+    public void showSignupError(String error) {
+
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
     }
 }

@@ -1,6 +1,9 @@
 package com.example.ware_house_management_android.dtos;
 
 
+import android.text.TextUtils;
+import android.util.Log;
+
 public class LoginRequestDto {
     private String email;
     private String password;
@@ -24,5 +27,20 @@ public class LoginRequestDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isValid() {
+        return !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password);
+    }
+
+    public String getErrorMessage() {
+        if (TextUtils.isEmpty(email) && TextUtils.isEmpty(password)) {
+            return "Email and password cannot be empty.";
+        } else if (TextUtils.isEmpty(email)) {
+            return "Email cannot be empty.";
+        } else if (TextUtils.isEmpty(password)) {
+            return "Password cannot be empty.";
+        }
+        return null;
     }
 }

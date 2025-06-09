@@ -6,20 +6,22 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.auth0.android.jwt.JWT;
 import com.example.ware_house_management_android.BaseCallback;
 import com.example.ware_house_management_android.LoginActivity;
 import com.example.ware_house_management_android.MainActivity;
 import com.example.ware_house_management_android.contracts.LoginContract;
-import com.example.ware_house_management_android.dtos.APIErrorResponseDto;
-import com.example.ware_house_management_android.dtos.APIResponseDto;
+import com.example.ware_house_management_android.dtos.JWTPayloadDecoded;
 import com.example.ware_house_management_android.dtos.LoginRequestDto;
 import com.example.ware_house_management_android.dtos.LoginResponseDto;
+import com.example.ware_house_management_android.enums.UserRoleEnum;
 import com.example.ware_house_management_android.repositories.AuthRepository;
 import com.example.ware_house_management_android.services.AuthService;
+import com.google.gson.Gson;
 
 public class LoginPresenter implements LoginContract.Presenter {
     private LoginContract.View view;
-    private Context context;
+    private final Context context;
 
     public LoginPresenter(LoginContract.View view, Context context) {
         this.view = view;
@@ -28,17 +30,71 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     AuthService authService;
 
+    private JWTPayloadDecoded decodeJWT(String token) {
+        if (TextUtils.isEmpty(token)) {
+            return null;
+        }
+
+        try {
+            JWT jwt = new JWT(token);
+            String id = jwt.getClaim("id").asString();
+            String role = jwt.getClaim("role").asString();
+            String email = jwt.getClaim("email").asString();
+            String fullName = jwt.getClaim("fullName").asString();
+
+            UserRoleEnum roleEnum = UserRoleEnum.CUSTOMER;
+            for (UserRoleEnum roleValue : UserRoleEnum.values()) {
+                if (roleValue.equals(role)) {
+                    roleEnum = roleValue;
+                    break;
+                }
+            }
+
+            JWTPayloadDecoded payload = new JWTPayloadDecoded(id, roleEnum, email, fullName);
+
+            return payload;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("LoginPresenter", "Error decoding JWT: " + e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public void checkAlreadyLogin() {
+        if (view != null) {
+            view.showLoading();
+        }
+        SharedPreferences sharedPreferences = context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE);
+        String userJson = sharedPreferences.getString("user", "");
+        if (TextUtils.isEmpty(userJson)) {
+
+            if (view != null) {
+                view.hideLoading();
+            }
+            return;
+        }
+
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+        if (context instanceof LoginActivity) {
+            ((LoginActivity) context).finish();
+        }
+        if (view != null) {
+            view.hideLoading();
+        }
+    }
+
     @Override
     public void login(LoginRequestDto loginRequestDto) {
         if (view != null) {
             view.showLoading();
         }
-        if (loginRequestDto == null ||
-                TextUtils.isEmpty(loginRequestDto.getEmail()) ||
-                TextUtils.isEmpty(loginRequestDto.getPassword())) {
+        if (loginRequestDto == null || !loginRequestDto.isValid()) {
             if (view != null) {
                 view.hideLoading();
-                view.showLoginError("Email and password cannot be empty.");
+                view.showLoginError(loginRequestDto.getErrorMessage());
             }
             return;
         }
@@ -54,9 +110,14 @@ public class LoginPresenter implements LoginContract.Presenter {
                         }
                         String accessToken = data.getAccessToken();
 
+                        JWTPayloadDecoded jwtPayload = decodeJWT(accessToken);
+                        Log.e("LoginPresenter", "Decoded JWT Payload: " + jwtPayload);
+                        Gson gson = new Gson();
+                        String userJson = gson.toJson(jwtPayload);
+
                         SharedPreferences sharedPreferences = context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("access_token", accessToken);
+                        editor.putString("user", userJson);
                         editor.apply();
 
                         Intent intent = new Intent(context, MainActivity.class);

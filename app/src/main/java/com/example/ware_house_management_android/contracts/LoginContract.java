@@ -4,6 +4,7 @@ import com.example.ware_house_management_android.dtos.LoginRequestDto;
 
 public interface LoginContract {
     interface View {
+
         void showLoginSuccess(String message);
 
         void showLoginError(String error);
@@ -14,6 +15,8 @@ public interface LoginContract {
     }
 
     interface Presenter {
+        void checkAlreadyLogin();
+
         void login(LoginRequestDto loginRequestDto);
 
         void onDestroy();

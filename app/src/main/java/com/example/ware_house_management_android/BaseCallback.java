@@ -37,5 +37,6 @@ public abstract class BaseCallback<T> implements retrofit2.Callback<APIResponseD
     }
 
     public abstract void onSuccess(T data);
+
     public abstract void onError(int code, String message);
 }
