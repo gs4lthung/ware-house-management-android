@@ -3,25 +3,24 @@ package com.example.ware_house_management_android.models;
 import com.example.ware_house_management_android.enums.UserRoleEnum;
 
 public class UserModel {
-    private String id;
+    private String _id;
     private String fullName;
     private String email;
-    private UserRoleEnum role;
+    private String role;
 
 
-
-    public UserModel(String id, String fullName, String email, UserRoleEnum role) {
-        this.id = id;
+    public UserModel(String id, String fullName, String email, String role) {
+        this._id = id;
         this.fullName = fullName;
         this.email = email;
         this.role = role;
     }
 
-    public UserRoleEnum getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(UserRoleEnum role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
@@ -42,10 +41,10 @@ public class UserModel {
     }
 
     public String getId() {
-        return id;
+        return _id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this._id = id;
     }
 }

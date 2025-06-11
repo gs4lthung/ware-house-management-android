@@ -1,10 +1,5 @@
 package com.example.ware_house_management_android;
 
-import android.Manifest;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.ware_house_management_android.contracts.LoginContract;
+import com.example.ware_house_management_android.contracts.auth.LoginContract;
 import com.example.ware_house_management_android.dtos.LoginRequestDto;
 import com.example.ware_house_management_android.presenters.LoginPresenter;
 

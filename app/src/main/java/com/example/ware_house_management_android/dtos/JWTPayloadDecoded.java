@@ -4,11 +4,11 @@ import com.example.ware_house_management_android.enums.UserRoleEnum;
 
 public class JWTPayloadDecoded {
     private String id;
-    private UserRoleEnum role;
+    private String role;
     private String email;
     private String fullName;
 
-    public JWTPayloadDecoded(String id, UserRoleEnum role, String email, String fullName) {
+    public JWTPayloadDecoded(String id, String role, String email, String fullName) {
         this.id = id;
         this.role = role;
         this.email = email;
@@ -19,7 +19,7 @@ public class JWTPayloadDecoded {
         return id;
     }
 
-    public UserRoleEnum getRole() {
+    public String getRole() {
         return role;
     }
 
@@ -35,7 +35,7 @@ public class JWTPayloadDecoded {
         this.id = id;
     }
 
-    public void setRole(UserRoleEnum role) {
+    public void setRole(String role) {
         this.role = role;
     }
 

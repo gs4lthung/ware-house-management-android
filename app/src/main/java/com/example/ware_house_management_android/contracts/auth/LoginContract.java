@@ -1,4 +1,4 @@
-package com.example.ware_house_management_android.contracts;
+package com.example.ware_house_management_android.contracts.auth;
 
 import com.example.ware_house_management_android.dtos.LoginRequestDto;
 

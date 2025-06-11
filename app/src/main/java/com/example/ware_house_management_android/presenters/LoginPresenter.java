@@ -10,7 +10,7 @@ import com.auth0.android.jwt.JWT;
 import com.example.ware_house_management_android.BaseCallback;
 import com.example.ware_house_management_android.LoginActivity;
 import com.example.ware_house_management_android.MainActivity;
-import com.example.ware_house_management_android.contracts.LoginContract;
+import com.example.ware_house_management_android.contracts.auth.LoginContract;
 import com.example.ware_house_management_android.dtos.JWTPayloadDecoded;
 import com.example.ware_house_management_android.dtos.LoginRequestDto;
 import com.example.ware_house_management_android.dtos.LoginResponseDto;
@@ -42,15 +42,7 @@ public class LoginPresenter implements LoginContract.Presenter {
             String email = jwt.getClaim("email").asString();
             String fullName = jwt.getClaim("fullName").asString();
 
-            UserRoleEnum roleEnum = UserRoleEnum.CUSTOMER;
-            for (UserRoleEnum roleValue : UserRoleEnum.values()) {
-                if (roleValue.equals(role)) {
-                    roleEnum = roleValue;
-                    break;
-                }
-            }
-
-            JWTPayloadDecoded payload = new JWTPayloadDecoded(id, roleEnum, email, fullName);
+            JWTPayloadDecoded payload = new JWTPayloadDecoded(id, role, email, fullName);
 
             return payload;
 
@@ -111,13 +103,13 @@ public class LoginPresenter implements LoginContract.Presenter {
                         String accessToken = data.getAccessToken();
 
                         JWTPayloadDecoded jwtPayload = decodeJWT(accessToken);
-                        Log.e("LoginPresenter", "Decoded JWT Payload: " + jwtPayload);
                         Gson gson = new Gson();
                         String userJson = gson.toJson(jwtPayload);
 
                         SharedPreferences sharedPreferences = context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("user", userJson);
+                        editor.putString("access_token", accessToken);
                         editor.apply();
 
                         Intent intent = new Intent(context, MainActivity.class);

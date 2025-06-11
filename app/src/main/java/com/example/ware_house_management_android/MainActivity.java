@@ -4,11 +4,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ware_house_management_android.contracts.LogoutContract;
-import com.example.ware_house_management_android.contracts.SignupContract;
+import com.example.ware_house_management_android.contracts.auth.LogoutContract;
 import com.example.ware_house_management_android.models.UserModel;
 import com.example.ware_house_management_android.presenters.LogoutPresenter;
 import com.example.ware_house_management_android.utils.UserUtil;
@@ -23,8 +23,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ware_house_management_android.databinding.ActivityMainBinding;
+import com.squareup.picasso.Picasso;
 
-public class MainActivity extends AppCompatActivity implements SignupContract.View, LogoutContract.View {
+public class MainActivity extends AppCompatActivity implements LogoutContract.View {
 
     private LogoutPresenter logoutPresenter;
     private AppBarConfiguration mAppBarConfiguration;
@@ -38,20 +39,16 @@ public class MainActivity extends AppCompatActivity implements SignupContract.Vi
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        binding.appBarMain.fab.setOnClickListener(view ->
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null)
-                        .setAnchorView(R.id.fab).show();
-            }
-        });
+                        .setAnchorView(R.id.fab).show());
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home, R.id.nav_user)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -62,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements SignupContract.Vi
         View headerView = navigationView.getHeaderView(0);
         TextView titleTextView = headerView.findViewById(R.id.title_textView);
         titleTextView.setText(currentUser.getFullName());
+        ImageView navImageView = headerView.findViewById(R.id.imageView);
+        Picasso.get().load("https://cdn-icons-png.freepik.com/512/3361/3361571.png").into(navImageView);
 
 
     }
@@ -96,25 +95,5 @@ public class MainActivity extends AppCompatActivity implements SignupContract.Vi
     @Override
     public void showLogoutError(String error) {
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void showSignupSuccess(String message) {
-
-    }
-
-    @Override
-    public void showSignupError(String error) {
-
-    }
-
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
-
     }
 }

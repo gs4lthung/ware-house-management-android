@@ -4,11 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.example.ware_house_management_android.LoginActivity;
-import com.example.ware_house_management_android.contracts.LoginContract;
-import com.example.ware_house_management_android.contracts.LogoutContract;
+import com.example.ware_house_management_android.contracts.auth.LogoutContract;
 
 public class LogoutPresenter implements LogoutContract.Presenter {
-    private LogoutContract.View view;
+    private final LogoutContract.View view;
     private final Context context;
 
     public LogoutPresenter(Context context, LogoutContract.View view) {
@@ -21,6 +20,7 @@ public class LogoutPresenter implements LogoutContract.Presenter {
         context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
                 .edit()
                 .remove("user")
+                .remove("access_token")
                 .apply();
 
         if (view != null) {

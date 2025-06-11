@@ -1,14 +1,10 @@
-package com.example.ware_house_management_android.contracts;
+package com.example.ware_house_management_android.contracts.auth;
 
 public interface LogoutContract {
     interface View {
         void showLogoutSuccess(String message);
 
         void showLogoutError(String error);
-
-        void showLoading();
-
-        void hideLoading();
     }
 
     interface Presenter {

@@ -28,7 +28,7 @@ public class UserUtil {
                 jwtPayloadDecoded.getId(),
                 jwtPayloadDecoded.getFullName(),
                 jwtPayloadDecoded.getEmail(),
-                jwtPayloadDecoded.getRole() != null ? jwtPayloadDecoded.getRole() : UserRoleEnum.CUSTOMER
+                jwtPayloadDecoded.getRole()
         );
     }
 }
