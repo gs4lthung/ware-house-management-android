@@ -1,4 +1,4 @@
-package com.example.ware_house_management_android;
+package com.example.ware_house_management_android.utils;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

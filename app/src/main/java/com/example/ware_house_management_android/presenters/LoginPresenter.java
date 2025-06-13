@@ -7,14 +7,13 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.auth0.android.jwt.JWT;
-import com.example.ware_house_management_android.BaseCallback;
+import com.example.ware_house_management_android.utils.BaseCallback;
 import com.example.ware_house_management_android.LoginActivity;
 import com.example.ware_house_management_android.MainActivity;
 import com.example.ware_house_management_android.contracts.auth.LoginContract;
 import com.example.ware_house_management_android.dtos.JWTPayloadDecoded;
 import com.example.ware_house_management_android.dtos.LoginRequestDto;
 import com.example.ware_house_management_android.dtos.LoginResponseDto;
-import com.example.ware_house_management_android.enums.UserRoleEnum;
 import com.example.ware_house_management_android.repositories.AuthRepository;
 import com.example.ware_house_management_android.services.AuthService;
 import com.google.gson.Gson;

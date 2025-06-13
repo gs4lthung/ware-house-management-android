@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:padding="8dp"
+    android:stretchColumns="*">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:paddingHorizontal="8dp"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/brand"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:paddingHorizontal="8dp"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/countryOfOrigin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:paddingHorizontal="8dp"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/storageType"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:paddingHorizontal="8dp"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/quantity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLines="1"
+            android:paddingHorizontal="8dp"
+            android:textSize="12sp" />
+    </TableRow>
+
+</TableLayout>

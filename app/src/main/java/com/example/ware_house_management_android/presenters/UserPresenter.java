@@ -3,21 +3,16 @@ package com.example.ware_house_management_android.presenters;
 import android.content.Context;
 import android.util.Log;
 
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStoreOwner;
-
-import com.example.ware_house_management_android.BaseCallback;
+import com.example.ware_house_management_android.utils.BaseCallback;
 import com.example.ware_house_management_android.contracts.UserContract;
 import com.example.ware_house_management_android.dtos.GetUsersResponseDto;
-import com.example.ware_house_management_android.enums.UserRoleEnum;
 import com.example.ware_house_management_android.models.UserModel;
 import com.example.ware_house_management_android.repositories.UserRepository;
 import com.example.ware_house_management_android.ui.user.UserViewModel;
 
-import java.util.ArrayList;
+import org.json.JSONException;
 
-import retrofit2.Call;
+import java.util.ArrayList;
 
 public class UserPresenter implements UserContract.Presenter {
     private UserViewModel userViewModel;
@@ -33,7 +28,7 @@ public class UserPresenter implements UserContract.Presenter {
     UserRepository userRepository;
 
     @Override
-    public void getUsersList() {
+    public void getUsersList() throws JSONException {
         ArrayList<UserModel> users = new ArrayList<>();
 
         if (view != null) {
@@ -41,7 +36,7 @@ public class UserPresenter implements UserContract.Presenter {
         }
 
         userRepository = new UserRepository(context);
-        userRepository.getUsers().enqueue(new BaseCallback<>() {
+        userRepository.getUsers("").enqueue(new BaseCallback<>() {
             @Override
             public void onSuccess(GetUsersResponseDto data) {
                 if (view != null) {

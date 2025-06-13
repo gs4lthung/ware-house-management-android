@@ -2,6 +2,8 @@ package com.example.ware_house_management_android.contracts;
 
 import com.example.ware_house_management_android.models.UserModel;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
 
 public interface UserContract {
@@ -18,6 +20,6 @@ public interface UserContract {
     }
 
     interface Presenter {
-        void getUsersList();
+        void getUsersList() throws JSONException;
     }
 }

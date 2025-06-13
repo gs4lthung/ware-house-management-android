@@ -1,4 +1,4 @@
-package com.example.ware_house_management_android;
+package com.example.ware_house_management_android.utils;
 
 import com.example.ware_house_management_android.dtos.APIErrorResponseDto;
 import com.example.ware_house_management_android.dtos.APIResponseDto;

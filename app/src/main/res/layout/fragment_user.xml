@@ -10,14 +10,12 @@
         android:id="@+id/text_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_margin="8dp"
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ProgressBar
         android:id="@+id/progress_bar_user"
@@ -25,63 +23,75 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_user"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_user" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <TableLayout
-        android:id="@+id/table_layout_user"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:padding="8dp"
-        android:stretchColumns="*"
-        app:layout_constraintBottom_toTopOf="@id/recycler_view_user"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/progress_bar_user">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="4dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:gravity="start"
-                android:padding="8dp"
-                android:text="Full Name"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:gravity="start"
-                android:padding="8dp"
-                android:text="Email"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:gravity="start"
-                android:padding="8dp"
-                android:text="Role"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-        </TableRow>
-    </TableLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_user"
-        android:layout_width="match_parent"
+    <HorizontalScrollView
+        android:id="@+id/h_scroll"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/progress_bar_user"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/table_layout_user" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- One child only! -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TableLayout
+                android:id="@+id/table_layout_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*"
+                android:background="@android:color/white"
+                android:padding="8dp">
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="8dp"
+                        android:text="Full Name"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:padding="8dp"
+                        android:text="Email"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="8dp"
+                        android:text="Role"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </TableRow>
+            </TableLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_user"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:nestedScrollingEnabled="true" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,10 +3,8 @@ package com.example.ware_house_management_android.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.example.ware_house_management_android.dtos.JWTPayloadDecoded;
-import com.example.ware_house_management_android.enums.UserRoleEnum;
 import com.example.ware_house_management_android.models.UserModel;
 import com.google.gson.Gson;
 

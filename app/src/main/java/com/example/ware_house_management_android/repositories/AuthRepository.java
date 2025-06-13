@@ -1,6 +1,6 @@
 package com.example.ware_house_management_android.repositories;
 
-import com.example.ware_house_management_android.APIClient;
+import com.example.ware_house_management_android.utils.APIClient;
 import com.example.ware_house_management_android.services.AuthService;
 
 public class AuthRepository {

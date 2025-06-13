@@ -19,6 +19,8 @@ import com.example.ware_house_management_android.contracts.UserContract;
 import com.example.ware_house_management_android.databinding.FragmentUserBinding;
 import com.example.ware_house_management_android.presenters.UserPresenter;
 
+import org.json.JSONException;
+
 public class UserFragment extends Fragment implements UserContract.View {
 
     private FragmentUserBinding binding;
@@ -39,7 +41,11 @@ public class UserFragment extends Fragment implements UserContract.View {
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
         userPresenter = new UserPresenter(this.getContext(), homeViewModel, this);
-        userPresenter.getUsersList();
+        try {
+            userPresenter.getUsersList();
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
 
         listUsers = binding.recyclerViewUser;
         listUsers.setLayoutManager(new GridLayoutManager(this.getContext(), 1));

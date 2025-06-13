@@ -1,5 +1,6 @@
 package com.example.ware_house_management_android;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import com.example.ware_house_management_android.contracts.auth.LogoutContract;
 import com.example.ware_house_management_android.models.UserModel;
 import com.example.ware_house_management_android.presenters.LogoutPresenter;
+import com.example.ware_house_management_android.ui.input.CreateInputFragment;
 import com.example.ware_house_management_android.utils.UserUtil;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -31,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements LogoutContract.Vi
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
+    private Intent intent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +44,10 @@ public class MainActivity extends AppCompatActivity implements LogoutContract.Vi
 
         setSupportActionBar(binding.appBarMain.toolbar);
         binding.appBarMain.fab.setOnClickListener(view ->
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null)
+                Snackbar.make(view, "Create import request", Snackbar.LENGTH_LONG)
+                        .setAction("Go to", v -> {
+
+                        })
                         .setAnchorView(R.id.fab).show());
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
