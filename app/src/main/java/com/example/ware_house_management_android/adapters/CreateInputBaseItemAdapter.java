@@ -3,7 +3,6 @@ package com.example.ware_house_management_android.adapters;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +18,6 @@ import com.example.ware_house_management_android.dtos.InputDetailsDto;
 import com.example.ware_house_management_android.models.BaseItemModel;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class CreateInputBaseItemAdapter extends RecyclerView.Adapter<CreateInputBaseItemAdapter.ViewHolder> {
     Context context;

@@ -2,6 +2,7 @@ package com.example.ware_house_management_android;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
@@ -26,6 +27,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ware_house_management_android.databinding.ActivityMainBinding;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements LogoutContract.View {
 
@@ -54,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements LogoutContract.Vi
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_user)
+                R.id.nav_home, R.id.nav_user, R.id.nav_create_input)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -62,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements LogoutContract.Vi
         NavigationUI.setupWithNavController(navigationView, navController);
 
         UserModel currentUser = UserUtil.currentUser(this);
+        Log.i("CurrentUser", currentUser.getRole());
+        checkFragmentByRole(currentUser.getRole());
         View headerView = navigationView.getHeaderView(0);
         TextView titleTextView = headerView.findViewById(R.id.title_textView);
         titleTextView.setText(currentUser.getFullName());
@@ -101,5 +106,25 @@ public class MainActivity extends AppCompatActivity implements LogoutContract.Vi
     @Override
     public void showLogoutError(String error) {
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+    }
+
+    private void checkFragmentByRole(String role) {
+        Menu menu = binding.navView.getMenu();
+        ArrayList<Integer> menuItems = new ArrayList<>();
+        menuItems.add(R.id.nav_home);
+        switch (role) {
+            case "Admin":
+                menuItems.add(R.id.nav_user);
+                break;
+            case "Report Staff":
+                menuItems.add(R.id.nav_create_input);
+                break;
+        }
+        for (int i = 0; i < menu.size(); i++) {
+            MenuItem menuItem = menu.getItem(i);
+            if (!menuItems.contains(menuItem.getItemId())) {
+                menu.removeItem(menuItem.getItemId());
+            }
+        }
     }
 }

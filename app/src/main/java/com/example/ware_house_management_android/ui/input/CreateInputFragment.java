@@ -22,7 +22,6 @@ import com.example.ware_house_management_android.contracts.CreateInputContract;
 import com.example.ware_house_management_android.databinding.FragmentCreateInputBinding;
 import com.example.ware_house_management_android.dtos.CreateInputDto;
 import com.example.ware_house_management_android.dtos.InputDetailsDto;
-import com.example.ware_house_management_android.models.BaseItemModel;
 import com.example.ware_house_management_android.models.UserModel;
 import com.example.ware_house_management_android.presenters.CreateInputPresenter;
 import com.example.ware_house_management_android.utils.UserUtil;
