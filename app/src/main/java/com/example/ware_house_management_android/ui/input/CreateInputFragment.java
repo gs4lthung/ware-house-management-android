@@ -2,6 +2,7 @@ package com.example.ware_house_management_android.ui.input;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +28,6 @@ import com.example.ware_house_management_android.presenters.CreateInputPresenter
 import com.example.ware_house_management_android.utils.UserUtil;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CreateInputFragment extends Fragment implements CreateInputContract.View {
 
@@ -127,6 +127,7 @@ public class CreateInputFragment extends Fragment implements CreateInputContract
 
     @Override
     public void showError(String error) {
+        Log.e("CreateInputFragment", "Error: " + error);
         Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
     }
 
