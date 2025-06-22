@@ -116,6 +116,9 @@ public class MainActivity extends AppCompatActivity implements LogoutContract.Vi
             case "Admin":
                 menuItems.add(R.id.nav_user);
                 break;
+            case "Manager":
+                menuItems.add(R.id.nav_list_inputs);
+                break;
             case "Report Staff":
                 menuItems.add(R.id.nav_create_input);
                 break;

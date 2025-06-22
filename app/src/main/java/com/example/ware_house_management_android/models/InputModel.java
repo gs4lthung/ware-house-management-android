@@ -1,6 +1,7 @@
 package com.example.ware_house_management_android.models;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class InputModel {
     private String _id;
@@ -9,13 +10,13 @@ public class InputModel {
 
     private Double totalPrice;
     private String status;
-    private String reportStaffId;
-    private String supplierId;
-    private ArrayList<String> inventoryStaffIds;
+    private UserModel reportStaffId;
+    private UserModel supplierId;
+    private ArrayList<UserModel> inventoryStaffIds;
+    private Date createdAt;
+    private Date updatedAt;
 
-    private boolean isDeleted;
-
-    public InputModel(String _id, String description, String batchNumber, Double totalPrice, String status, String reportStaffId, String supplierId, ArrayList<String> inventoryStaffIds, boolean isDeleted) {
+    public InputModel(String _id, String description, String batchNumber, Double totalPrice, String status, UserModel reportStaffId, UserModel supplierId, ArrayList<UserModel> inventoryStaffIds, Date createdAt, Date updatedAt) {
         this._id = _id;
         this.description = description;
         this.batchNumber = batchNumber;
@@ -24,7 +25,8 @@ public class InputModel {
         this.reportStaffId = reportStaffId;
         this.supplierId = supplierId;
         this.inventoryStaffIds = inventoryStaffIds;
-        this.isDeleted = isDeleted;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public String getId() {
@@ -67,31 +69,43 @@ public class InputModel {
         this.status = status;
     }
 
-    public String getReportStaffId() {
+    public UserModel getReportStaffId() {
         return reportStaffId;
     }
 
-    public void setReportStaffId(String reportStaffId) {
+    public void setReportStaffId(UserModel reportStaffId) {
         this.reportStaffId = reportStaffId;
     }
 
-    public String getSupplierId() {
+    public UserModel getSupplierId() {
         return supplierId;
     }
 
-    public void setSupplierId(String supplierId) {
+    public void setSupplierId(UserModel supplierId) {
         this.supplierId = supplierId;
     }
 
-    public ArrayList<String> getInventoryStaffIds() {
+    public ArrayList<UserModel> getInventoryStaffIds() {
         return inventoryStaffIds;
     }
 
-    public void setInventoryStaffIds(ArrayList<String> inventoryStaffIds) {
+    public void setInventoryStaffIds(ArrayList<UserModel> inventoryStaffIds) {
         this.inventoryStaffIds = inventoryStaffIds;
     }
 
-    public boolean isDeleted() {
-        return isDeleted;
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

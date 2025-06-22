@@ -10,36 +10,41 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/requiredBy"
             android:layout_width="120dp"
             android:gravity="start"
             android:textSize="12sp" />
 
         <TextView
-            android:id="@+id/brand"
+            android:id="@+id/writtenBy"
             android:layout_width="120dp"
             android:gravity="start"
             android:textSize="12sp" />
 
         <TextView
-            android:id="@+id/countryOfOrigin"
+            android:id="@+id/description"
             android:layout_width="120dp"
             android:gravity="start"
             android:textSize="12sp" />
 
         <TextView
-            android:id="@+id/storageType"
+            android:id="@+id/status"
             android:layout_width="120dp"
             android:gravity="start"
             android:textSize="12sp" />
 
-        <EditText
-            android:id="@+id/quantity"
+        <TextView
+            android:id="@+id/createdAt"
             android:layout_width="120dp"
-            android:gravity="center"
-            android:inputType="number"
-            android:maxLines="1"
+            android:gravity="start"
             android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/updatedAt"
+            android:layout_width="120dp"
+            android:gravity="start"
+            android:textSize="12sp" />
+
     </TableRow>
 
 </TableLayout>

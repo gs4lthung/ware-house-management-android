@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.user.UserFragment">
+    tools:context=".ui.input.InputFragment">
 
     <TextView
-        android:id="@+id/text_user"
+        android:id="@+id/text_list_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -18,33 +18,33 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
-        android:id="@+id/progress_bar_user"
+        android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_user" />
+        app:layout_constraintTop_toBottomOf="@id/text_list_input" />
 
     <HorizontalScrollView
         android:id="@+id/h_scroll"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fillViewport="true"
+        android:scrollbars="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/progress_bar_user">
+        app:layout_constraintTop_toBottomOf="@id/progress_bar">
 
-        <!-- One child only! -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TableLayout
-                android:id="@+id/table_layout_user"
+                android:id="@+id/table_layout_list_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
@@ -52,31 +52,57 @@
                 android:stretchColumns="*">
 
                 <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_width="@dimen/column_width"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp">
 
                     <TextView
                         android:layout_width="@dimen/column_width"
-                        android:text="Full Name"
+                        android:layout_height="wrap_content"
+                        android:text="Required by"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="@dimen/column_width"
-                        android:text="Email"
+                        android:layout_height="wrap_content"
+                        android:text="Written by"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="@dimen/column_width"
-                        android:text="Role"
+                        android:layout_height="wrap_content"
+                        android:text="Description"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="@dimen/column_width"
+                        android:layout_height="wrap_content"
+                        android:text="Status"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="@dimen/column_width"
+                        android:layout_height="wrap_content"
+                        android:text="Created At"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="@dimen/column_width"
+                        android:layout_height="wrap_content"
+                        android:text="Updated At"
                         android:textSize="16sp"
                         android:textStyle="bold" />
                 </TableRow>
+
             </TableLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view_user"
+                android:id="@+id/recycler_view_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
