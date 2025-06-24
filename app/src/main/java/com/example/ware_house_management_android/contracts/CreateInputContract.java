@@ -1,6 +1,6 @@
 package com.example.ware_house_management_android.contracts;
 
-import com.example.ware_house_management_android.dtos.CreateInputDto;
+import com.example.ware_house_management_android.dtos.inputs.CreateInputDto;
 
 public interface CreateInputContract {
 

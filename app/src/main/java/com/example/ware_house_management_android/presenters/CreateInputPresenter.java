@@ -1,12 +1,11 @@
 package com.example.ware_house_management_android.presenters;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.example.ware_house_management_android.contracts.CreateInputContract;
-import com.example.ware_house_management_android.dtos.CreateInputDto;
-import com.example.ware_house_management_android.dtos.GetBaseItemsResponseDto;
-import com.example.ware_house_management_android.dtos.GetUsersResponseDto;
+import com.example.ware_house_management_android.dtos.inputs.CreateInputDto;
+import com.example.ware_house_management_android.dtos.base_items.GetBaseItemsResponseDto;
+import com.example.ware_house_management_android.dtos.users.GetUsersResponseDto;
 import com.example.ware_house_management_android.models.BaseItemModel;
 import com.example.ware_house_management_android.models.UserModel;
 import com.example.ware_house_management_android.repositories.BaseItemRepository;

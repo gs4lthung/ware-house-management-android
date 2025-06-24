@@ -1,7 +1,7 @@
 package com.example.ware_house_management_android.services;
 
 import com.example.ware_house_management_android.dtos.APIResponseDto;
-import com.example.ware_house_management_android.dtos.GetBaseItemsResponseDto;
+import com.example.ware_house_management_android.dtos.base_items.GetBaseItemsResponseDto;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ware_house_management_android.R;
-import com.example.ware_house_management_android.dtos.InputDetailsDto;
+import com.example.ware_house_management_android.dtos.inputs.InputDetailsDto;
 import com.example.ware_house_management_android.models.BaseItemModel;
 
 import java.util.ArrayList;

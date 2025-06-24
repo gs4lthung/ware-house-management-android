@@ -21,11 +21,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ware_house_management_android.adapters.CreateInputBaseItemAdapter;
 import com.example.ware_house_management_android.contracts.CreateInputContract;
 import com.example.ware_house_management_android.databinding.FragmentCreateInputBinding;
-import com.example.ware_house_management_android.dtos.CreateInputDto;
-import com.example.ware_house_management_android.dtos.InputDetailsDto;
+import com.example.ware_house_management_android.dtos.inputs.CreateInputDto;
+import com.example.ware_house_management_android.dtos.inputs.InputDetailsDto;
 import com.example.ware_house_management_android.models.UserModel;
 import com.example.ware_house_management_android.presenters.CreateInputPresenter;
-import com.example.ware_house_management_android.utils.UserUtil;
+import com.example.ware_house_management_android.utils.AppUtil;
 
 import java.util.ArrayList;
 
@@ -75,7 +75,7 @@ public class CreateInputFragment extends Fragment implements CreateInputContract
         });
 
 
-        UserModel reportStaff = UserUtil.currentUser(getContext());
+        UserModel reportStaff = AppUtil.currentUser(getContext());
         EditText descriptionEditText = binding.etDescription;
         Button createInputButton = binding.btnSubmit;
         createInputButton.setOnClickListener(v -> {

@@ -1,6 +1,6 @@
 package com.example.ware_house_management_android.contracts.auth;
 
-import com.example.ware_house_management_android.dtos.LoginRequestDto;
+import com.example.ware_house_management_android.dtos.auth.LoginRequestDto;
 
 public interface LoginContract {
     interface View {

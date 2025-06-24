@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 import com.example.ware_house_management_android.utils.APIClient;
 import com.example.ware_house_management_android.dtos.APIResponseDto;
-import com.example.ware_house_management_android.dtos.GetUsersResponseDto;
+import com.example.ware_house_management_android.dtos.users.GetUsersResponseDto;
 import com.example.ware_house_management_android.services.UserService;
 
 import org.json.JSONException;

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.ware_house_management_android.dtos.APIResponseDto;
-import com.example.ware_house_management_android.dtos.GetBaseItemsResponseDto;
+import com.example.ware_house_management_android.dtos.base_items.GetBaseItemsResponseDto;
 import com.example.ware_house_management_android.services.BaseItemService;
 import com.example.ware_house_management_android.utils.APIClient;
 

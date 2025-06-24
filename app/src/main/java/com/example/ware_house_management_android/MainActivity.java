@@ -13,8 +13,7 @@ import android.widget.Toast;
 import com.example.ware_house_management_android.contracts.auth.LogoutContract;
 import com.example.ware_house_management_android.models.UserModel;
 import com.example.ware_house_management_android.presenters.LogoutPresenter;
-import com.example.ware_house_management_android.ui.input.CreateInputFragment;
-import com.example.ware_house_management_android.utils.UserUtil;
+import com.example.ware_house_management_android.utils.AppUtil;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements LogoutContract.Vi
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        UserModel currentUser = UserUtil.currentUser(this);
+        UserModel currentUser = AppUtil.currentUser(this);
         Log.i("CurrentUser", currentUser.getRole());
         checkFragmentByRole(currentUser.getRole());
         View headerView = navigationView.getHeaderView(0);

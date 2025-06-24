@@ -1,9 +1,7 @@
 package com.example.ware_house_management_android.services;
 
-import android.content.Context;
-
 import com.example.ware_house_management_android.dtos.APIResponseDto;
-import com.example.ware_house_management_android.dtos.GetUsersResponseDto;
+import com.example.ware_house_management_android.dtos.users.GetUsersResponseDto;
 
 import org.json.JSONObject;
 

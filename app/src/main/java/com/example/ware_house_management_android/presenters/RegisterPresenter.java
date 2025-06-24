@@ -11,13 +11,12 @@ import com.example.ware_house_management_android.LoginActivity;
 import com.example.ware_house_management_android.MainActivity;
 import com.example.ware_house_management_android.RegisterActivity;
 import com.example.ware_house_management_android.contracts.auth.RegisterContract;
-import com.example.ware_house_management_android.dtos.JWTPayloadDecoded;
-import com.example.ware_house_management_android.dtos.RegisterRequestDto;
-import com.example.ware_house_management_android.dtos.RegisterResponseDto;
+import com.example.ware_house_management_android.dtos.auth.JWTPayloadDecoded;
+import com.example.ware_house_management_android.dtos.auth.RegisterRequestDto;
+import com.example.ware_house_management_android.dtos.auth.RegisterResponseDto;
 import com.example.ware_house_management_android.repositories.AuthRepository;
 import com.example.ware_house_management_android.services.AuthService;
 import com.example.ware_house_management_android.utils.BaseCallback;
-import com.google.gson.Gson;
 
 public class RegisterPresenter implements RegisterContract.Presenter {
     private RegisterContract.View view;

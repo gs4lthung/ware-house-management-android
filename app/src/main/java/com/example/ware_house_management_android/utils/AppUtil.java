@@ -4,12 +4,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
-import com.example.ware_house_management_android.dtos.JWTPayloadDecoded;
+import com.example.ware_house_management_android.dtos.auth.JWTPayloadDecoded;
 import com.example.ware_house_management_android.models.UserModel;
 import com.google.gson.Gson;
 
-public class UserUtil {
-    private UserUtil() {
+import java.text.DateFormat;
+import java.util.Date;
+
+public class AppUtil {
+    private AppUtil() {
     }
 
     public static UserModel currentUser(Context context) {
@@ -28,5 +31,13 @@ public class UserUtil {
                 jwtPayloadDecoded.getEmail(),
                 jwtPayloadDecoded.getRole()
         );
+    }
+
+    public static String dateToLocaleString(Date date){
+        if(date==null){
+            return "";
+        }
+
+        return DateFormat.getDateTimeInstance(DateFormat.SHORT,DateFormat.SHORT).format(date);
     }
 }

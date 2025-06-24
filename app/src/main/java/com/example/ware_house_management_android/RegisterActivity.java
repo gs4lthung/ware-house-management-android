@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ware_house_management_android.contracts.auth.RegisterContract;
-import com.example.ware_house_management_android.dtos.RegisterRequestDto;
+import com.example.ware_house_management_android.dtos.auth.RegisterRequestDto;
 import com.example.ware_house_management_android.presenters.RegisterPresenter;
 
 public class RegisterActivity extends AppCompatActivity implements RegisterContract.View, View.OnClickListener {
