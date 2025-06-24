@@ -97,6 +97,12 @@
                         android:text="Updated At"
                         android:textSize="16sp"
                         android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="@dimen/column_width"
+                        android:layout_height="wrap_content"
+                        android:text="Action"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
                 </TableRow>
 
             </TableLayout>

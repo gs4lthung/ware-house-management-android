@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.example.ware_house_management_android.utils.BaseCallback;
 import com.example.ware_house_management_android.contracts.UserContract;
-import com.example.ware_house_management_android.dtos.GetUsersResponseDto;
+import com.example.ware_house_management_android.dtos.users.GetUsersResponseDto;
 import com.example.ware_house_management_android.models.UserModel;
 import com.example.ware_house_management_android.repositories.UserRepository;
 import com.example.ware_house_management_android.ui.user.UserViewModel;

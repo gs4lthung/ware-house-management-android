@@ -48,6 +48,7 @@ dependencies {
     implementation("com.auth0.android:jwtdecode:2.0.1")
     implementation("com.squareup.picasso:picasso:2.8")
     implementation("androidx.recyclerview:recyclerview:1.2.1")
+    implementation("com.google.android.material:material:1.9.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ware_house_management_android.contracts.auth.LoginContract;
-import com.example.ware_house_management_android.dtos.LoginRequestDto;
+import com.example.ware_house_management_android.dtos.auth.LoginRequestDto;
 import com.example.ware_house_management_android.presenters.LoginPresenter;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View, View.OnClickListener {

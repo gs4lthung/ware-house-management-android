@@ -1,9 +1,8 @@
-package com.example.ware_house_management_android.dtos;
+package com.example.ware_house_management_android.dtos.inputs;
 
 import android.text.TextUtils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class CreateInputDto {
     private String reportStaffId;

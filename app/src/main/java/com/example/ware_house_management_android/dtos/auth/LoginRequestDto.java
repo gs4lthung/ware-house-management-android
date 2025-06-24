@@ -1,8 +1,7 @@
-package com.example.ware_house_management_android.dtos;
+package com.example.ware_house_management_android.dtos.auth;
 
 
 import android.text.TextUtils;
-import android.util.Log;
 
 public class LoginRequestDto {
     private String email;

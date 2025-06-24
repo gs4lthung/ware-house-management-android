@@ -1,7 +1,6 @@
 package com.example.ware_house_management_android.contracts.auth;
 
-import com.example.ware_house_management_android.dtos.LoginRequestDto;
-import com.example.ware_house_management_android.dtos.RegisterRequestDto;
+import com.example.ware_house_management_android.dtos.auth.RegisterRequestDto;
 
 public interface RegisterContract {
     interface View {

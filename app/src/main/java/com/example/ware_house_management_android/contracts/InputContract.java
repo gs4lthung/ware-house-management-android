@@ -15,5 +15,9 @@ public interface InputContract {
 
     interface Presenter {
         void getInputList() throws JSONException;
+
+        void getInputById(String id) throws JSONException;
+
+        void approveInput(String id);
     }
 }

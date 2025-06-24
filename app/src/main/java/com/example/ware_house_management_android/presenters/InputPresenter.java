@@ -4,8 +4,9 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.ware_house_management_android.contracts.InputContract;
-import com.example.ware_house_management_android.dtos.GetInputsResponseDto;
-import com.example.ware_house_management_android.dtos.GetUsersResponseDto;
+import com.example.ware_house_management_android.dtos.inputs.GetInputByIdResponseDto;
+import com.example.ware_house_management_android.dtos.inputs.GetInputsResponseDto;
+import com.example.ware_house_management_android.models.InputDetailsModel;
 import com.example.ware_house_management_android.models.InputModel;
 import com.example.ware_house_management_android.repositories.InputRepository;
 import com.example.ware_house_management_android.ui.input.InputViewModel;
@@ -67,6 +68,79 @@ public class InputPresenter implements InputContract.Presenter {
             }
         });
 
+
+    }
+
+    @Override
+    public void getInputById(String id) throws JSONException {
+        if (view != null) {
+            view.showLoading();
+        }
+
+        ArrayList<InputDetailsModel> inputDetails = new ArrayList<>();
+
+        inputRepository = new InputRepository(context);
+        inputRepository.getInputById(id).enqueue(new BaseCallback<>() {
+            @Override
+            public void onSuccess(GetInputByIdResponseDto data) {
+                if (view != null) {
+                    view.hideLoading();
+                    view.showSuccess("Input details fetched successfully");
+                }
+
+                if (data == null || data.getInput() == null) {
+                    view.showError("No input found with the given ID");
+                    return;
+                }
+
+                for (InputDetailsModel inputDetail : data.getInputDetails()) {
+                    inputDetails.add(inputDetail);
+                }
+
+                inputViewModel.setInputDetails(inputDetails);
+
+            }
+
+            @Override
+            public void onError(int code, String message) {
+                if (view != null) {
+                    view.hideLoading();
+                    view.showError("Error fetching input details: " + message);
+                    Log.e("InputPresenter", "Error fetching input details: " + message);
+                }
+            }
+        });
+
+    }
+
+    @Override
+    public void approveInput(String id) {
+
+        if (view != null) {
+            view.showLoading();
+        }
+
+        inputRepository = new InputRepository(context);
+        inputRepository.approveInput(id).enqueue(new BaseCallback<>() {
+            @Override
+            public void onSuccess(Void data) throws JSONException {
+                if (view != null) {
+                    view.hideLoading();
+                    view.showSuccess("Input approved successfully");
+                }
+
+                getInputList();
+            }
+
+            @Override
+            public void onError(int code, String message) {
+                if (view != null) {
+                    view.hideLoading();
+                    view.showError("Error approving input: " + message);
+                    Log.e("InputPresenter", "Error approving input: " + message);
+                }
+            }
+        });
 
     }
 }

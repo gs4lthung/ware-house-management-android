@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/text_view_input_details_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:text="Input Details"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <HorizontalScrollView
+        android:id="@+id/h_scroll_input_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:scrollbars="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/text_view_inventory_staffs_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_input_details_title">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Table Header -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableLayout
+                    android:id="@+id/table_layout_list_input_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:stretchColumns="*">
+
+                    <TableRow android:padding="4dp">
+
+                        <TextView
+                            android:layout_width="@dimen/column_width"
+                            android:layout_height="wrap_content"
+                            android:text="Name"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="@dimen/column_width"
+                            android:layout_height="wrap_content"
+                            android:text="Request Qty"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="@dimen/column_width"
+                            android:layout_height="wrap_content"
+                            android:text="Actual Qty"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="@dimen/column_width"
+                            android:layout_height="wrap_content"
+                            android:text="Input Price"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="@dimen/column_width"
+                            android:layout_height="wrap_content"
+                            android:text="Suggested Price"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="@dimen/column_width"
+                            android:layout_height="wrap_content"
+                            android:text="Status"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="@dimen/column_width"
+                            android:layout_height="wrap_content"
+                            android:text="Updated By"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="@dimen/column_width"
+                            android:layout_height="wrap_content"
+                            android:text="Created At"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="@dimen/column_width"
+                            android:layout_height="wrap_content"
+                            android:text="Updated At"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                    </TableRow>
+
+                </TableLayout>
+            </HorizontalScrollView>
+
+            <!-- List Content -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_input_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:padding="4dp" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/text_view_inventory_staffs_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="12dp"
+        android:paddingBottom="8dp"
+        android:text="Assigned Inventory Staffs"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/h_scroll_inventory_staffs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/h_scroll_input_details" />
+
+    <HorizontalScrollView
+        android:id="@+id/h_scroll_inventory_staffs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:scrollbars="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/button_action"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_inventory_staffs_title">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Table Header -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableLayout
+                    android:id="@+id/table_layout_list_inventory_staffs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:stretchColumns="*">
+
+                    <TableRow android:padding="4dp">
+
+                        <TextView
+                            android:layout_width="@dimen/column_width"
+                            android:layout_height="wrap_content"
+                            android:text="Full Name"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="@dimen/column_width"
+                            android:layout_height="wrap_content"
+                            android:text="Email"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="@dimen/column_width"
+                            android:layout_height="wrap_content"
+                            android:text="Role"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+
+                    </TableRow>
+
+                </TableLayout>
+            </HorizontalScrollView>
+
+            <!-- List Content -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_inventory_staffs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:padding="4dp" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <Button
+        android:id="@+id/button_action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Approve"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/h_scroll_inventory_staffs" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

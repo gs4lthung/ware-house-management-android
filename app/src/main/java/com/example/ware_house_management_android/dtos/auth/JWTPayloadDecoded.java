@@ -1,6 +1,4 @@
-package com.example.ware_house_management_android.dtos;
-
-import com.example.ware_house_management_android.enums.UserRoleEnum;
+package com.example.ware_house_management_android.dtos.auth;
 
 public class JWTPayloadDecoded {
     private String id;

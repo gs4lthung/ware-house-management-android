@@ -1,4 +1,4 @@
-package com.example.ware_house_management_android.dtos;
+package com.example.ware_house_management_android.dtos.users;
 
 import com.example.ware_house_management_android.models.UserModel;
 
