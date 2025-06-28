@@ -21,16 +21,22 @@
             android:gravity="start"
             android:textSize="12sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/actualQuantity"
             android:layout_width="@dimen/column_width"
+            android:focusable="false"
             android:gravity="start"
+            android:inputType="number"
+            android:text="Actual Qty"
             android:textSize="12sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/inputPrice"
             android:layout_width="@dimen/column_width"
+            android:focusable="false"
             android:gravity="start"
+            android:inputType="number"
+            android:text="Input Price"
             android:textSize="12sp" />
 
         <TextView

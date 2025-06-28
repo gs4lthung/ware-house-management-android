@@ -2,6 +2,8 @@ package com.example.ware_house_management_android.dtos.inputs;
 
 import android.text.TextUtils;
 
+import com.example.ware_house_management_android.dtos.input_details.InputDetailsDto;
+
 import java.util.ArrayList;
 
 public class CreateInputDto {

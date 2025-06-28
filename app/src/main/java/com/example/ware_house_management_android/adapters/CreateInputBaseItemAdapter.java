@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ware_house_management_android.R;
-import com.example.ware_house_management_android.dtos.inputs.InputDetailsDto;
+import com.example.ware_house_management_android.dtos.input_details.InputDetailsDto;
 import com.example.ware_house_management_android.models.BaseItemModel;
 
 import java.util.ArrayList;
@@ -75,13 +75,13 @@ public class CreateInputBaseItemAdapter extends RecyclerView.Adapter<CreateInput
 
             @Override
             public void afterTextChanged(Editable s) {
+                inputDetails.removeIf(item -> item.getBaseItemId().equals(baseItem.getId()));
+
                 int quantity = s.toString().isEmpty() ? 0 : Integer.parseInt(s.toString());
 
-                if (quantity == 0) {
-                    inputDetails.removeIf(item -> item.getBaseItemId().equals(baseItem.getId()));
-                    return;
+                if (quantity > 0) {
+                    inputDetails.add(new InputDetailsDto(baseItem.getId(), quantity));
                 }
-                inputDetails.add(new InputDetailsDto(baseItem.getId(), quantity));
             }
         });
     }

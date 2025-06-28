@@ -12,20 +12,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:textAlignment="center"
+        android:text="Import Management - Input List"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_list_input" />
 
     <HorizontalScrollView
         android:id="@+id/h_scroll"
@@ -33,10 +25,10 @@
         android:layout_height="wrap_content"
         android:fillViewport="true"
         android:scrollbars="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/progress_bar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/progress_bar">
+        app:layout_constraintTop_toBottomOf="@id/text_list_input">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -97,6 +89,7 @@
                         android:text="Updated At"
                         android:textSize="16sp"
                         android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="@dimen/column_width"
                         android:layout_height="wrap_content"
@@ -116,5 +109,17 @@
                 android:padding="4dp" />
         </LinearLayout>
     </HorizontalScrollView>
+
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_list_input" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

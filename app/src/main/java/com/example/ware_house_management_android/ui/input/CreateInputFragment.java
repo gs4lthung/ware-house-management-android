@@ -22,9 +22,11 @@ import com.example.ware_house_management_android.adapters.CreateInputBaseItemAda
 import com.example.ware_house_management_android.contracts.CreateInputContract;
 import com.example.ware_house_management_android.databinding.FragmentCreateInputBinding;
 import com.example.ware_house_management_android.dtos.inputs.CreateInputDto;
-import com.example.ware_house_management_android.dtos.inputs.InputDetailsDto;
+import com.example.ware_house_management_android.dtos.input_details.InputDetailsDto;
 import com.example.ware_house_management_android.models.UserModel;
 import com.example.ware_house_management_android.presenters.CreateInputPresenter;
+import com.example.ware_house_management_android.view_models.base_item.BaseItemViewModel;
+import com.example.ware_house_management_android.view_models.user.UserViewModel;
 import com.example.ware_house_management_android.utils.AppUtil;
 
 import java.util.ArrayList;
@@ -46,16 +48,20 @@ public class CreateInputFragment extends Fragment implements CreateInputContract
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        CreateInputViewModel createInputViewModel =
-                new ViewModelProvider(this).get(CreateInputViewModel.class);
+        UserViewModel userViewModel =
+                new ViewModelProvider(this).get(UserViewModel.class);
+        BaseItemViewModel baseItemViewModel =
+                new ViewModelProvider(this).get(BaseItemViewModel.class);
 
         binding = FragmentCreateInputBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        createInputPresenter = new CreateInputPresenter(this.getContext(), createInputViewModel, this);
+        createInputPresenter = new CreateInputPresenter(this.getContext(), baseItemViewModel, userViewModel, this);
         try {
-            createInputPresenter.getBaseItemList();
-            createInputPresenter.getSuppliers();
+            if (!baseItemViewModel.hasLoadedBaseItems())
+                createInputPresenter.getBaseItemList();
+            if (!userViewModel.hasLoadedSuppliers())
+                createInputPresenter.getSuppliers();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -66,11 +72,11 @@ public class CreateInputFragment extends Fragment implements CreateInputContract
         progressBar = binding.progressBar;
 
         createInputBaseItemAdapter = new CreateInputBaseItemAdapter(this.getContext(), null);
-        createInputViewModel.getBaseItemList().observe(getViewLifecycleOwner(), baseItems -> {
+        baseItemViewModel.getBaseItemList().observe(getViewLifecycleOwner(), baseItems -> {
             createInputBaseItemAdapter.setBaseItemList(baseItems);
             listBaseItems.setAdapter(createInputBaseItemAdapter);
         });
-        createInputViewModel.getSuppliersList().observe(getViewLifecycleOwner(), suppliers -> {
+        userViewModel.getSuppliersList().observe(getViewLifecycleOwner(), suppliers -> {
             setReportStaffSpinnerAdapter(suppliers);
         });
 
@@ -80,13 +86,18 @@ public class CreateInputFragment extends Fragment implements CreateInputContract
         Button createInputButton = binding.btnSubmit;
         createInputButton.setOnClickListener(v -> {
             ArrayList<InputDetailsDto> inputDetails = new ArrayList<>();
+            for (InputDetailsDto inputDetail : createInputBaseItemAdapter.getInputDetails()) {
+                if (inputDetail.getQuantity() > 0) {
+                    inputDetails.add(inputDetail);
+                }
+            }
 
 
             CreateInputDto createInputDto = new CreateInputDto(
                     reportStaff.getId(),
-                    createInputViewModel.getSuppliersList().getValue().get(spinnerReportStaff.getSelectedItemPosition()).getId(),
+                    userViewModel.getSuppliersList().getValue().get(spinnerReportStaff.getSelectedItemPosition()).getId(),
                     descriptionEditText.getText().toString(),
-                    createInputBaseItemAdapter.getInputDetails()
+                    inputDetails
             );
 
             try {

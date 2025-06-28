@@ -1,4 +1,4 @@
-package com.example.ware_house_management_android.dtos.inputs;
+package com.example.ware_house_management_android.dtos.input_details;
 
 public class InputDetailsDto {
     private String baseItemId;
