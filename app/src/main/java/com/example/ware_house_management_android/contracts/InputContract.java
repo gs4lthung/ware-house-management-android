@@ -28,6 +28,8 @@ public interface InputContract {
 
         void assignInput(String id, ArrayList<String> inventoryStaffIds, String fromDate, String toDate) throws JSONException;
 
+        void completeInput(String id);
+
         void getInventoryStaffList() throws JSONException;
 
         void updateInputDetails(String id, UpdateInputDetailDto updateInputDetailDto) throws JSONException;

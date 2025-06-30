@@ -12,13 +12,10 @@ public class InputDetailsModel {
     private Double inputPrice;
     private Double suggestedOutputPrice;
     private String status;
-    private UserModel updatedBy;
-
     private Date createdAt;
-
     private Date updatedAt;
 
-    public InputDetailsModel(String _id, String inputId, WarehouseModel warehouseId, ItemModel itemId, int requestQuantity, int actualQuantity, Double inputPrice, Double suggestedOutputPrice, String status, UserModel updatedBy, Date createdAt, Date updatedAt) {
+    public InputDetailsModel(String _id, String inputId, WarehouseModel warehouseId, ItemModel itemId, int requestQuantity, int actualQuantity, Double inputPrice, Double suggestedOutputPrice, String status, Date createdAt, Date updatedAt) {
         this._id = _id;
         this.inputId = inputId;
         this.warehouseId = warehouseId;
@@ -28,7 +25,6 @@ public class InputDetailsModel {
         this.inputPrice = inputPrice;
         this.suggestedOutputPrice = suggestedOutputPrice;
         this.status = status;
-        this.updatedBy = updatedBy;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -103,14 +99,6 @@ public class InputDetailsModel {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public UserModel getUpdatedBy() {
-        return updatedBy;
-    }
-
-    public void setUpdatedBy(UserModel updatedBy) {
-        this.updatedBy = updatedBy;
     }
 
     public Date getCreatedAt() {

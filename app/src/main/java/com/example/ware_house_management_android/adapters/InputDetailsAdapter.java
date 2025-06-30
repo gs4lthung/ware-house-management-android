@@ -99,8 +99,6 @@ public class InputDetailsAdapter extends RecyclerView.Adapter<InputDetailsAdapte
         });
         holder.suggestedOutputPrice.setText(String.valueOf(inputDetails.getSuggestedOutputPrice() == null ? "N/A" : inputDetails.getSuggestedOutputPrice()));
         holder.status.setText(inputDetails.getStatus());
-        if (inputDetails.getUpdatedBy() != null && inputDetails.getUpdatedBy().getFullName() != null)
-            holder.updatedBy.setText(inputDetails.getUpdatedBy().getFullName().isEmpty() ? "N/A" : inputDetails.getUpdatedBy().getFullName());
         holder.createdAt.setText(AppUtil.dateToLocaleString(inputDetails.getCreatedAt()));
         holder.updatedAt.setText(AppUtil.dateToLocaleString(inputDetails.getUpdatedAt()));
 
@@ -117,7 +115,7 @@ public class InputDetailsAdapter extends RecyclerView.Adapter<InputDetailsAdapte
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView name, requestQuantity, inputPrice, suggestedOutputPrice, status, updatedBy, createdAt, updatedAt;
+        TextView name, requestQuantity, inputPrice, suggestedOutputPrice, status, createdAt, updatedAt;
 
         EditText actualQuantity;
 
@@ -130,7 +128,6 @@ public class InputDetailsAdapter extends RecyclerView.Adapter<InputDetailsAdapte
             inputPrice = itemView.findViewById(R.id.inputPrice);
             suggestedOutputPrice = itemView.findViewById(R.id.suggestedOutputPrice);
             status = itemView.findViewById(R.id.status);
-            updatedBy = itemView.findViewById(R.id.updatedBy);
             createdAt = itemView.findViewById(R.id.createdAt);
             updatedAt = itemView.findViewById(R.id.updatedAt);
 

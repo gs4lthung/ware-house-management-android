@@ -43,4 +43,7 @@ public interface InputService {
     @PATCH("inputs/{id}/assign")
     Call<APIResponseDto<Void>> assignInput(@Header("Authorization") String token, @Path("id") String id,
                                            @Body AssignInputDto assignInputDto);
+
+    @PATCH("inputs/{id}/complete")
+    Call<APIResponseDto<Void>> completeInput(@Header("Authorization") String token, @Path("id") String id);
 }

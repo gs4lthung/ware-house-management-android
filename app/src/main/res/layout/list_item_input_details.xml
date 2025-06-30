@@ -52,12 +52,6 @@
             android:textSize="12sp" />
 
         <TextView
-            android:id="@+id/updatedBy"
-            android:layout_width="@dimen/column_width"
-            android:gravity="start"
-            android:textSize="12sp" />
-
-        <TextView
             android:id="@+id/createdAt"
             android:layout_width="@dimen/column_width"
             android:gravity="start"

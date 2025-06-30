@@ -183,6 +183,36 @@ public class InputPresenter implements InputContract.Presenter {
     }
 
     @Override
+    public void completeInput(String id) {
+        if (view != null) {
+            view.showLoading();
+        }
+
+        inputRepository = new InputRepository(context);
+        inputRepository.completeInput(id).enqueue(new BaseCallback<>() {
+            @Override
+            public void onSuccess(Void data) throws JSONException {
+                if (view != null) {
+                    view.hideLoading();
+                    view.showSuccess("Input completed successfully");
+                }
+
+                getInputList();
+            }
+
+            @Override
+            public void onError(int code, String message) {
+                if (view != null) {
+                    view.hideLoading();
+                    view.showError("Error completing input: " + message);
+                    Log.e("InputPresenter", "Error completing input: " + message);
+                }
+            }
+        });
+
+    }
+
+    @Override
     public void getInventoryStaffList() throws JSONException {
         ArrayList<UserModel> inventoryStaffs = new ArrayList<>();
         if (view != null) {

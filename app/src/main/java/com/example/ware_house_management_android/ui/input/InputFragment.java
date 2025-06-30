@@ -100,12 +100,14 @@ public class InputFragment extends Fragment implements InputContract.View {
                     String userRole = AppUtil.currentUser(this.getContext()).getRole();
                     Button actionButton = dialogInputDetails.findViewById(R.id.button_action);
                     if (item.getStatus().equals("Pending")) {
-                        if (userRole.equals("Report Staff"))
-                            actionButton.setText("Update");
-                        else
-                            actionButton.setText("Approve");
+                        if (userRole.equals("Report Staff")) actionButton.setText("Update");
+                        else actionButton.setText("Approve");
                     } else if (item.getStatus().equals("Approved")) {
                         actionButton.setText("Assign Staffs");
+                    } else if (item.getStatus().equals("Assigned")) {
+                        if (userRole.equals("Inventory Staff")) {
+                            actionButton.setText("Complete");
+                        }
                     } else {
                         actionButton.setText("View Details");
                     }
@@ -140,6 +142,12 @@ public class InputFragment extends Fragment implements InputContract.View {
                                     Toast.makeText(getContext(), "No inventory staffs found", Toast.LENGTH_SHORT).show();
                                 }
                             });
+                        } else if (item.getStatus().equals("Assigned")) {
+                            if (userRole.equals("Inventory Staff")) {
+                                inputPresenter.completeInput(item.getId());
+                            } else {
+                                Toast.makeText(getContext(), "Only inventory staff can complete the input", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
                             Toast.makeText(getContext(), "Input is already approved", Toast.LENGTH_SHORT).show();
                         }

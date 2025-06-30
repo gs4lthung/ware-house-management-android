@@ -103,4 +103,15 @@ public class InputRepository {
                 toDate
         ));
     }
+
+    public Call<APIResponseDto<Void>> completeInput(String id) {
+        String accessToken = sharedPreferences.getString("access_token", "");
+
+        if (accessToken == null) {
+            throw new IllegalStateException("Access token is not available in SharedPreferences");
+        }
+
+        String authHeader = "Bearer " + accessToken;
+        return inputService.completeInput(authHeader, id);
+    }
 }
