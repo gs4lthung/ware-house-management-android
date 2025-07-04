@@ -3,21 +3,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.input.InputFragment">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/text_list_input"
+
+    <LinearLayout
+        android:id="@+id/linear_layout_output"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:textAlignment="center"
-        android:text="Import Management - Input List"
-        android:textSize="20sp"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/h_scroll"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+        >
 
+        <Spinner
+            android:id="@+id/spinner_customer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:hint="Select Customer"
+            android:padding="12dp"
+            android:spinnerMode="dropdown" />
+
+        <EditText
+            android:id="@+id/et_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:hint="Enter your description here..."
+            android:inputType="textMultiLine"
+            android:maxLines="3"
+            android:minLines="1"
+            android:padding="16dp"
+            android:textSize="12sp"
+            tools:layout_editor_absoluteX="75dp"
+            tools:layout_editor_absoluteY="64dp" />
+    </LinearLayout>
 
     <HorizontalScrollView
         android:id="@+id/h_scroll"
@@ -25,10 +48,10 @@
         android:layout_height="400dp"
         android:fillViewport="true"
         android:scrollbars="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/progress_bar"
+        app:layout_constraintBottom_toTopOf="@+id/btn_submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_list_input">
+        app:layout_constraintTop_toBottomOf="@id/linear_layout_output">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -36,7 +59,7 @@
             android:orientation="vertical">
 
             <TableLayout
-                android:id="@+id/table_layout_list_input"
+                android:id="@+id/table_layout_items"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
@@ -44,64 +67,55 @@
                 android:stretchColumns="*">
 
                 <TableRow
-                    android:layout_width="@dimen/column_width"
-                    android:layout_height="wrap_content"
-                    android:padding="4dp">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:layout_width="@dimen/column_width"
-                        android:layout_height="wrap_content"
-                        android:text="Required by"
-                        android:textSize="16sp"
+                        android:text="Name"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="@dimen/column_width"
-                        android:layout_height="wrap_content"
-                        android:text="Written by"
-                        android:textSize="16sp"
+                        android:text="Brand"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="@dimen/column_width"
-                        android:layout_height="wrap_content"
-                        android:text="Description"
-                        android:textSize="16sp"
+                        android:text="Origin"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="@dimen/column_width"
-                        android:layout_height="wrap_content"
-                        android:text="Status"
-                        android:textSize="16sp"
+                        android:text="Storage Qty"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="@dimen/column_width"
-                        android:layout_height="wrap_content"
-                        android:text="Created At"
-                        android:textSize="16sp"
+                        android:text="Suggested Output Price"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="@dimen/column_width"
-                        android:layout_height="wrap_content"
-                        android:text="Updated At"
-                        android:textSize="16sp"
+                        android:text="Output Qty"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="@dimen/column_width"
-                        android:layout_height="wrap_content"
-                        android:text="Action"
-                        android:textSize="16sp"
+                        android:text="Output Price"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
                 </TableRow>
-
             </TableLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view_input"
+                android:id="@+id/recycler_view_items"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
@@ -110,16 +124,24 @@
         </LinearLayout>
     </HorizontalScrollView>
 
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Submit"
+        app:layout_constraintBottom_toTopOf="@+id/progress_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/h_scroll" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_list_input" />
-
+        app:layout_constraintTop_toBottomOf="@id/btn_submit" />
 </androidx.constraintlayout.widget.ConstraintLayout>

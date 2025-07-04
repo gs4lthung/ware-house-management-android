@@ -18,6 +18,7 @@ import com.example.ware_house_management_android.adapters.UserAdapter;
 import com.example.ware_house_management_android.contracts.UserContract;
 import com.example.ware_house_management_android.databinding.FragmentUserBinding;
 import com.example.ware_house_management_android.presenters.UserPresenter;
+import com.example.ware_house_management_android.view_models.UserViewModel;
 
 import org.json.JSONException;
 
@@ -42,7 +43,8 @@ public class UserFragment extends Fragment implements UserContract.View {
 
         userPresenter = new UserPresenter(this.getContext(), homeViewModel, this);
         try {
-            userPresenter.getUsersList();
+            if (!homeViewModel.hasLoadedUsers())
+                userPresenter.getUsersList();
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }

@@ -11,7 +11,8 @@ import com.example.ware_house_management_android.models.UserModel;
 import com.example.ware_house_management_android.repositories.BaseItemRepository;
 import com.example.ware_house_management_android.repositories.InputRepository;
 import com.example.ware_house_management_android.repositories.UserRepository;
-import com.example.ware_house_management_android.ui.input.CreateInputViewModel;
+import com.example.ware_house_management_android.view_models.BaseItemViewModel;
+import com.example.ware_house_management_android.view_models.UserViewModel;
 import com.example.ware_house_management_android.utils.BaseCallback;
 
 import java.util.ArrayList;
@@ -20,11 +21,14 @@ public class CreateInputPresenter implements CreateInputContract.Presenter {
     private CreateInputContract.View view;
     private Context context;
 
-    private CreateInputViewModel createInputViewModel;
+    private BaseItemViewModel baseItemViewModel;
 
-    public CreateInputPresenter(Context context, CreateInputViewModel createInputViewModel, CreateInputContract.View view) {
+    private UserViewModel userViewModel;
+
+    public CreateInputPresenter(Context context, BaseItemViewModel baseItemViewModel, UserViewModel userViewModel, CreateInputContract.View view) {
         this.context = context;
-        this.createInputViewModel = createInputViewModel;
+        this.baseItemViewModel = baseItemViewModel;
+        this.userViewModel = userViewModel;
         this.view = view;
     }
 
@@ -62,7 +66,7 @@ public class CreateInputPresenter implements CreateInputContract.Presenter {
                         baseItems.add(baseItem);
                     }
 
-                    createInputViewModel.setBaseItemList(baseItems);
+                    baseItemViewModel.setBaseItemList(baseItems);
 
                 } else {
                     if (view != null) {
@@ -105,7 +109,7 @@ public class CreateInputPresenter implements CreateInputContract.Presenter {
                         suppliers.add(user);
                     }
 
-                    createInputViewModel.setSuppliersList(suppliers);
+                    userViewModel.setSuppliersList(suppliers);
 
                 } else {
                     if (view != null) {

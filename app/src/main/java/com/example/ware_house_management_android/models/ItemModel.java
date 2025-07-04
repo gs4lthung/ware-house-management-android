@@ -7,12 +7,17 @@ public class ItemModel {
     private String status;
     private String unit;
 
-    public ItemModel(String _id, BaseItemModel baseItemId, String code, String status, String unit) {
+    private int storageQuantity;
+    private Double suggestedOutputPrice;
+
+    public ItemModel(String _id, BaseItemModel baseItemId, String code, String status, String unit, int storageQuantity, Double suggestedOutputPrice) {
         this._id = _id;
         this.baseItemId = baseItemId;
         this.code = code;
         this.status = status;
         this.unit = unit;
+        this.storageQuantity = storageQuantity;
+        this.suggestedOutputPrice = suggestedOutputPrice;
     }
 
     public String get_id() {
@@ -53,5 +58,21 @@ public class ItemModel {
 
     public void setUnit(String unit) {
         this.unit = unit;
+    }
+
+    public int getStorageQuantity() {
+        return storageQuantity;
+    }
+
+    public void setStorageQuantity(int storageQuantity) {
+        this.storageQuantity = storageQuantity;
+    }
+
+    public Double getSuggestedOutputPrice() {
+        return suggestedOutputPrice;
+    }
+
+    public void setSuggestedOutputPrice(Double suggestedOutputPrice) {
+        this.suggestedOutputPrice = suggestedOutputPrice;
     }
 }

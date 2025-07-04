@@ -120,6 +120,11 @@ public class MainActivity extends AppCompatActivity implements LogoutContract.Vi
                 break;
             case "Report Staff":
                 menuItems.add(R.id.nav_create_input);
+                menuItems.add(R.id.nav_list_inputs);
+                menuItems.add(R.id.nav_create_output);
+                break;
+            case "Inventory Staff":
+                menuItems.add(R.id.nav_list_inputs);
                 break;
         }
         for (int i = 0; i < menu.size(); i++) {

@@ -1,10 +1,10 @@
-package com.example.ware_house_management_android.dtos.inputs;
+package com.example.ware_house_management_android.dtos.input_details;
 
-public class InputDetailsDto {
+public class CreateInputDetailsDto {
     private String baseItemId;
     private int quantity;
 
-    public InputDetailsDto(String baseItemId, int quantity) {
+    public CreateInputDetailsDto(String baseItemId, int quantity) {
         this.baseItemId = baseItemId;
         this.quantity = quantity;
     }
