@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ware_house_management_android.R;
-import com.example.ware_house_management_android.dtos.input_details.InputDetailsDto;
+import com.example.ware_house_management_android.dtos.input_details.CreateInputDetailsDto;
 import com.example.ware_house_management_android.models.BaseItemModel;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class CreateInputBaseItemAdapter extends RecyclerView.Adapter<CreateInputBaseItemAdapter.ViewHolder> {
     Context context;
     ArrayList<BaseItemModel> baseItemList;
-    ArrayList<InputDetailsDto> inputDetails = new ArrayList<>();
+    ArrayList<CreateInputDetailsDto> inputDetails = new ArrayList<>();
 
 
     public CreateInputBaseItemAdapter(Context context, ArrayList<BaseItemModel> baseItemList) {
@@ -80,7 +80,7 @@ public class CreateInputBaseItemAdapter extends RecyclerView.Adapter<CreateInput
                 int quantity = s.toString().isEmpty() ? 0 : Integer.parseInt(s.toString());
 
                 if (quantity > 0) {
-                    inputDetails.add(new InputDetailsDto(baseItem.getId(), quantity));
+                    inputDetails.add(new CreateInputDetailsDto(baseItem.getId(), quantity));
                 }
             }
         });
@@ -91,7 +91,7 @@ public class CreateInputBaseItemAdapter extends RecyclerView.Adapter<CreateInput
         return baseItemList.size();
     }
 
-    public ArrayList<InputDetailsDto> getInputDetails() {
+    public ArrayList<CreateInputDetailsDto> getInputDetails() {
         return inputDetails;
     }
 

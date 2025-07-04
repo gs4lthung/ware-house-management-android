@@ -20,5 +20,9 @@
             android:id="@+id/nav_list_inputs"
             android:icon="@drawable/ic_menu_import"
             android:title="Imports" />
+        <item
+            android:id="@+id/nav_create_output"
+            android:icon="@drawable/ic_dialog_plus"
+            android:title="Create Export" />
     </group>
 </menu>

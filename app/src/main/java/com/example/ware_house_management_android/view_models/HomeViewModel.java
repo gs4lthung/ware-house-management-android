@@ -1,4 +1,4 @@
-package com.example.ware_house_management_android.view_models.home;
+package com.example.ware_house_management_android.view_models;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ware_house_management_android.databinding.FragmentHomeBinding;
-import com.example.ware_house_management_android.view_models.home.HomeViewModel;
+import com.example.ware_house_management_android.view_models.HomeViewModel;
 
 public class HomeFragment extends Fragment {
 

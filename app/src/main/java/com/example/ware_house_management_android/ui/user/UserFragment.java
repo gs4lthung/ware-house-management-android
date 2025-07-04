@@ -18,7 +18,7 @@ import com.example.ware_house_management_android.adapters.UserAdapter;
 import com.example.ware_house_management_android.contracts.UserContract;
 import com.example.ware_house_management_android.databinding.FragmentUserBinding;
 import com.example.ware_house_management_android.presenters.UserPresenter;
-import com.example.ware_house_management_android.view_models.user.UserViewModel;
+import com.example.ware_house_management_android.view_models.UserViewModel;
 
 import org.json.JSONException;
 

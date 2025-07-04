@@ -27,4 +27,10 @@
         android:name="com.example.ware_house_management_android.ui.input.InputFragment"
         android:label="Imports"
         tools:layout="@layout/fragment_input" />
+
+    <fragment
+        android:id="@+id/nav_create_output"
+        android:name="com.example.ware_house_management_android.ui.output.CreateOutputFragment"
+        android:label="Create Export"
+        tools:layout="@layout/fragment_create_output" />
 </navigation>

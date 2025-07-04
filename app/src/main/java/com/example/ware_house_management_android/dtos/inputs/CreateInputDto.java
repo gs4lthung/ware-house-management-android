@@ -2,7 +2,7 @@ package com.example.ware_house_management_android.dtos.inputs;
 
 import android.text.TextUtils;
 
-import com.example.ware_house_management_android.dtos.input_details.InputDetailsDto;
+import com.example.ware_house_management_android.dtos.input_details.CreateInputDetailsDto;
 
 import java.util.ArrayList;
 
@@ -11,9 +11,9 @@ public class CreateInputDto {
     private String supplierId;
     private String description;
 
-    private ArrayList<InputDetailsDto> inputDetails;
+    private ArrayList<CreateInputDetailsDto> inputDetails;
 
-    public CreateInputDto(String reportStaffId, String supplierId, String description, ArrayList<InputDetailsDto> inputDetails) {
+    public CreateInputDto(String reportStaffId, String supplierId, String description, ArrayList<CreateInputDetailsDto> inputDetails) {
         this.reportStaffId = reportStaffId;
         this.supplierId = supplierId;
         this.description = description;
@@ -53,7 +53,7 @@ public class CreateInputDto {
         return null;
     }
 
-    public ArrayList<InputDetailsDto> getItems() {
+    public ArrayList<CreateInputDetailsDto> getItems() {
         return inputDetails;
     }
 }

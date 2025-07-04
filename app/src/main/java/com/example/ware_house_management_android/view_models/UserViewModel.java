@@ -1,4 +1,4 @@
-package com.example.ware_house_management_android.view_models.user;
+package com.example.ware_house_management_android.view_models;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -21,6 +21,9 @@ public class UserViewModel extends ViewModel {
     private boolean hasLoadedToAssignInventoryStaffs = false;
     private final MutableLiveData<ArrayList<UserModel>> mAssignedInventoryStaffsList;
 
+    private final MutableLiveData<ArrayList<UserModel>> mCustomersList;
+    private boolean hasLoadedCustomers = false;
+
 
     public UserViewModel() {
         mText = new MutableLiveData<>();
@@ -30,6 +33,7 @@ public class UserViewModel extends ViewModel {
         mSuppliersList = new MutableLiveData<>(new ArrayList<>());
         mToAssignInventoryStaffsList = new MutableLiveData<>(new ArrayList<>());
         mAssignedInventoryStaffsList = new MutableLiveData<>(new ArrayList<>());
+        mCustomersList = new MutableLiveData<>(new ArrayList<>());
     }
 
     public LiveData<String> getText() {
@@ -85,5 +89,18 @@ public class UserViewModel extends ViewModel {
 
     public void setAssignedInventoryStaffsList(ArrayList<UserModel> assignedInventoryStaffs) {
         mAssignedInventoryStaffsList.setValue(assignedInventoryStaffs);
+    }
+
+    public LiveData<ArrayList<UserModel>> getCustomersList() {
+        return mCustomersList;
+    }
+
+    public void setCustomersList(ArrayList<UserModel> customers) {
+        mCustomersList.setValue(customers);
+        hasLoadedCustomers = true;
+    }
+
+    public boolean hasLoadedCustomers() {
+        return hasLoadedCustomers;
     }
 }

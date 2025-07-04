@@ -14,9 +14,9 @@ import com.example.ware_house_management_android.models.UserModel;
 import com.example.ware_house_management_android.repositories.InputDetailRepository;
 import com.example.ware_house_management_android.repositories.InputRepository;
 import com.example.ware_house_management_android.repositories.UserRepository;
-import com.example.ware_house_management_android.view_models.input.InputViewModel;
+import com.example.ware_house_management_android.view_models.InputViewModel;
 import com.example.ware_house_management_android.utils.BaseCallback;
-import com.example.ware_house_management_android.view_models.user.UserViewModel;
+import com.example.ware_house_management_android.view_models.UserViewModel;
 
 import org.json.JSONException;
 

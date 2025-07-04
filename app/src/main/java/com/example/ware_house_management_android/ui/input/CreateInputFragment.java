@@ -22,11 +22,11 @@ import com.example.ware_house_management_android.adapters.CreateInputBaseItemAda
 import com.example.ware_house_management_android.contracts.CreateInputContract;
 import com.example.ware_house_management_android.databinding.FragmentCreateInputBinding;
 import com.example.ware_house_management_android.dtos.inputs.CreateInputDto;
-import com.example.ware_house_management_android.dtos.input_details.InputDetailsDto;
+import com.example.ware_house_management_android.dtos.input_details.CreateInputDetailsDto;
 import com.example.ware_house_management_android.models.UserModel;
 import com.example.ware_house_management_android.presenters.CreateInputPresenter;
-import com.example.ware_house_management_android.view_models.base_item.BaseItemViewModel;
-import com.example.ware_house_management_android.view_models.user.UserViewModel;
+import com.example.ware_house_management_android.view_models.BaseItemViewModel;
+import com.example.ware_house_management_android.view_models.UserViewModel;
 import com.example.ware_house_management_android.utils.AppUtil;
 
 import java.util.ArrayList;
@@ -85,8 +85,8 @@ public class CreateInputFragment extends Fragment implements CreateInputContract
         EditText descriptionEditText = binding.etDescription;
         Button createInputButton = binding.btnSubmit;
         createInputButton.setOnClickListener(v -> {
-            ArrayList<InputDetailsDto> inputDetails = new ArrayList<>();
-            for (InputDetailsDto inputDetail : createInputBaseItemAdapter.getInputDetails()) {
+            ArrayList<CreateInputDetailsDto> inputDetails = new ArrayList<>();
+            for (CreateInputDetailsDto inputDetail : createInputBaseItemAdapter.getInputDetails()) {
                 if (inputDetail.getQuantity() > 0) {
                     inputDetails.add(inputDetail);
                 }

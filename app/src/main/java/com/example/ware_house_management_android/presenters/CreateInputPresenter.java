@@ -11,8 +11,8 @@ import com.example.ware_house_management_android.models.UserModel;
 import com.example.ware_house_management_android.repositories.BaseItemRepository;
 import com.example.ware_house_management_android.repositories.InputRepository;
 import com.example.ware_house_management_android.repositories.UserRepository;
-import com.example.ware_house_management_android.view_models.base_item.BaseItemViewModel;
-import com.example.ware_house_management_android.view_models.user.UserViewModel;
+import com.example.ware_house_management_android.view_models.BaseItemViewModel;
+import com.example.ware_house_management_android.view_models.UserViewModel;
 import com.example.ware_house_management_android.utils.BaseCallback;
 
 import java.util.ArrayList;

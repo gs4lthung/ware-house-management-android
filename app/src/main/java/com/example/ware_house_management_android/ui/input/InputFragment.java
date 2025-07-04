@@ -32,8 +32,8 @@ import com.example.ware_house_management_android.dtos.inputs.AssignInputDto;
 import com.example.ware_house_management_android.models.UserModel;
 import com.example.ware_house_management_android.presenters.InputPresenter;
 import com.example.ware_house_management_android.utils.AppUtil;
-import com.example.ware_house_management_android.view_models.input.InputViewModel;
-import com.example.ware_house_management_android.view_models.user.UserViewModel;
+import com.example.ware_house_management_android.view_models.InputViewModel;
+import com.example.ware_house_management_android.view_models.UserViewModel;
 
 
 import org.json.JSONException;

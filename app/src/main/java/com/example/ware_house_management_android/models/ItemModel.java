@@ -1,24 +1,23 @@
 package com.example.ware_house_management_android.models;
 
-import java.util.Date;
-
 public class ItemModel {
     private String _id;
     private BaseItemModel baseItemId;
     private String code;
     private String status;
-    private Date manufactureDate;
-    private Date expiredDate;
     private String unit;
 
-    public ItemModel(String _id, BaseItemModel baseItemId, String code, String status, Date manufactureDate, Date expiredDate, String unit) {
+    private int storageQuantity;
+    private Double suggestedOutputPrice;
+
+    public ItemModel(String _id, BaseItemModel baseItemId, String code, String status, String unit, int storageQuantity, Double suggestedOutputPrice) {
         this._id = _id;
         this.baseItemId = baseItemId;
         this.code = code;
         this.status = status;
-        this.manufactureDate = manufactureDate;
-        this.expiredDate = expiredDate;
         this.unit = unit;
+        this.storageQuantity = storageQuantity;
+        this.suggestedOutputPrice = suggestedOutputPrice;
     }
 
     public String get_id() {
@@ -61,19 +60,19 @@ public class ItemModel {
         this.unit = unit;
     }
 
-    public Date getManufactureDate() {
-        return manufactureDate;
+    public int getStorageQuantity() {
+        return storageQuantity;
     }
 
-    public void setManufactureDate(Date manufactureDate) {
-        this.manufactureDate = manufactureDate;
+    public void setStorageQuantity(int storageQuantity) {
+        this.storageQuantity = storageQuantity;
     }
 
-    public Date getExpiredDate() {
-        return expiredDate;
+    public Double getSuggestedOutputPrice() {
+        return suggestedOutputPrice;
     }
 
-    public void setExpiredDate(Date expiredDate) {
-        this.expiredDate = expiredDate;
+    public void setSuggestedOutputPrice(Double suggestedOutputPrice) {
+        this.suggestedOutputPrice = suggestedOutputPrice;
     }
 }

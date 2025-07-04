@@ -8,7 +8,7 @@ import com.example.ware_house_management_android.contracts.UserContract;
 import com.example.ware_house_management_android.dtos.users.GetUsersResponseDto;
 import com.example.ware_house_management_android.models.UserModel;
 import com.example.ware_house_management_android.repositories.UserRepository;
-import com.example.ware_house_management_android.view_models.user.UserViewModel;
+import com.example.ware_house_management_android.view_models.UserViewModel;
 
 import org.json.JSONException;
 
