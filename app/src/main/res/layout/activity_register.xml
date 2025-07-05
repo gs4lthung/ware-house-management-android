@@ -18,7 +18,6 @@
         android:textSize="32sp"
         android:textStyle="bold" />
 
-    <!-- Full Name Input -->
     <EditText
         android:id="@+id/register_et_fullName"
         android:layout_width="match_parent"
@@ -29,7 +28,6 @@
     android:padding="16dp"
     android:layout_marginTop="10dp" />
 
-    <!-- Email Input -->
     <EditText
         android:id="@+id/register_et_email"
         android:layout_width="match_parent"
@@ -41,7 +39,6 @@
         android:inputType="textEmailAddress"
         android:padding="16dp" />
 
-    <!-- Password Input -->
     <EditText
         android:id="@+id/register_et_password"
         android:layout_width="match_parent"
@@ -51,7 +48,6 @@
         android:inputType="textPassword"
         android:padding="16dp" />
 
-    <!-- Links Layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -73,7 +69,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Register Button -->
     <Button
         android:id="@+id/register_btn_register"
         android:layout_width="wrap_content"
@@ -84,7 +79,6 @@
         android:text="Register"
         android:textColor="@android:color/white" />
 
-    <!-- ProgressBar -->
     <ProgressBar
         android:id="@+id/register_progress_bar"
         android:layout_width="wrap_content"

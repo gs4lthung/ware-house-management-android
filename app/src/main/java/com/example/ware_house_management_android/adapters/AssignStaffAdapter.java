@@ -43,7 +43,7 @@ public class AssignStaffAdapter extends RecyclerView.Adapter<AssignStaffAdapter.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.list_item_assign_staff, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_assign_staff, parent, false);
         return new ViewHolder(view);
     }
 

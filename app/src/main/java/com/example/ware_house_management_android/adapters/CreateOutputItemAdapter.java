@@ -32,7 +32,7 @@ public class CreateOutputItemAdapter extends RecyclerView.Adapter<CreateOutputIt
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.list_item_create_output, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_create_output, parent, false);
         return new CreateOutputItemAdapter.ViewHolder(view);
     }
 

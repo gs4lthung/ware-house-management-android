@@ -51,7 +51,7 @@ public class CreateInputBaseItemAdapter extends RecyclerView.Adapter<CreateInput
     @NonNull
     @Override
     public CreateInputBaseItemAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.list_item_create_input, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_create_input, parent, false);
         return new CreateInputBaseItemAdapter.ViewHolder(view);
     }
 
