@@ -36,7 +36,7 @@ public class UserPresenter implements UserContract.Presenter {
         }
 
         userRepository = new UserRepository(context);
-        userRepository.getUsers("").enqueue(new BaseCallback<>() {
+        userRepository.getUsers("").enqueue(new BaseCallback<>(context) {
             @Override
             public void onSuccess(GetUsersResponseDto data) {
                 if (view != null) {

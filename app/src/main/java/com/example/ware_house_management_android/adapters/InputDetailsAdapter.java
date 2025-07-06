@@ -38,7 +38,7 @@ public class InputDetailsAdapter extends RecyclerView.Adapter<InputDetailsAdapte
     @NonNull
     @Override
     public InputDetailsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.list_item_input_details, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_input_details, parent, false);
         return new InputDetailsAdapter.ViewHolder(view, userRole);
     }
 

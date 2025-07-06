@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity implements LogoutContract.Vi
 
         setSupportActionBar(binding.appBarMain.toolbar);
         binding.appBarMain.fab.setOnClickListener(view ->
-                Snackbar.make(view, "Create import request", Snackbar.LENGTH_LONG)
-                        .setAction("Go to", v -> {
+                Snackbar.make(view, "Chang to dark mode", Snackbar.LENGTH_LONG)
+                        .setAction("G", v -> {
 
                         })
                         .setAnchorView(R.id.fab).show());

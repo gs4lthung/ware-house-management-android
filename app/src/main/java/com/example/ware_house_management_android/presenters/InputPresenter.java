@@ -48,7 +48,7 @@ public class InputPresenter implements InputContract.Presenter {
         }
 
         inputRepository = new InputRepository(context);
-        inputRepository.getInputs().enqueue(new BaseCallback<>() {
+        inputRepository.getInputs().enqueue(new BaseCallback<>(context) {
             @Override
             public void onSuccess(GetInputsResponseDto data) {
                 if (view != null) {
@@ -70,6 +70,7 @@ public class InputPresenter implements InputContract.Presenter {
 
             @Override
             public void onError(int code, String message) {
+                super.onError(code, message);
                 if (view != null) {
                     view.hideLoading();
                     view.showError("Error fetching inputs: " + message);
@@ -90,7 +91,7 @@ public class InputPresenter implements InputContract.Presenter {
         ArrayList<InputDetailsModel> inputDetails = new ArrayList<>();
 
         inputRepository = new InputRepository(context);
-        inputRepository.getInputById(id).enqueue(new BaseCallback<>() {
+        inputRepository.getInputById(id).enqueue(new BaseCallback<>(context) {
             @Override
             public void onSuccess(GetInputByIdResponseDto data) {
                 if (view != null) {
@@ -112,6 +113,7 @@ public class InputPresenter implements InputContract.Presenter {
 
             @Override
             public void onError(int code, String message) {
+                super.onError(code, message);
                 if (view != null) {
                     view.hideLoading();
                     view.showError("Error fetching input details: " + message);
@@ -130,7 +132,7 @@ public class InputPresenter implements InputContract.Presenter {
         }
 
         inputRepository = new InputRepository(context);
-        inputRepository.approveInput(id).enqueue(new BaseCallback<>() {
+        inputRepository.approveInput(id).enqueue(new BaseCallback<>(context) {
             @Override
             public void onSuccess(Void data) throws JSONException {
                 if (view != null) {
@@ -143,6 +145,7 @@ public class InputPresenter implements InputContract.Presenter {
 
             @Override
             public void onError(int code, String message) {
+                super.onError(code, message);
                 if (view != null) {
                     view.hideLoading();
                     view.showError("Error approving input: " + message);
@@ -160,7 +163,7 @@ public class InputPresenter implements InputContract.Presenter {
         }
 
         inputRepository = new InputRepository(context);
-        inputRepository.assignInput(id, inventoryStaffIds, fromDate, toDate).enqueue(new BaseCallback<>() {
+        inputRepository.assignInput(id, inventoryStaffIds, fromDate, toDate).enqueue(new BaseCallback<>(context) {
             @Override
             public void onSuccess(Void data) throws JSONException {
                 if (view != null) {
@@ -173,6 +176,7 @@ public class InputPresenter implements InputContract.Presenter {
 
             @Override
             public void onError(int code, String message) {
+                super.onError(code, message);
                 if (view != null) {
                     view.hideLoading();
                     view.showError("Error assigning input: " + message);
@@ -189,7 +193,7 @@ public class InputPresenter implements InputContract.Presenter {
         }
 
         inputRepository = new InputRepository(context);
-        inputRepository.completeInput(id).enqueue(new BaseCallback<>() {
+        inputRepository.completeInput(id).enqueue(new BaseCallback<>(context) {
             @Override
             public void onSuccess(Void data) throws JSONException {
                 if (view != null) {
@@ -202,6 +206,7 @@ public class InputPresenter implements InputContract.Presenter {
 
             @Override
             public void onError(int code, String message) {
+                super.onError(code, message);
                 if (view != null) {
                     view.hideLoading();
                     view.showError("Error completing input: " + message);
@@ -220,7 +225,7 @@ public class InputPresenter implements InputContract.Presenter {
         }
 
         userRepository = new UserRepository(context);
-        userRepository.getUsers("Inventory Staff").enqueue(new BaseCallback<>() {
+        userRepository.getUsers("Inventory Staff").enqueue(new BaseCallback<>(context) {
             @Override
             public void onSuccess(GetUsersResponseDto data) {
                 if (view != null) {
@@ -243,6 +248,7 @@ public class InputPresenter implements InputContract.Presenter {
 
             @Override
             public void onError(int code, String message) {
+                super.onError(code, message);
                 if (view != null) {
                     view.hideLoading();
                     view.showError("Error fetching inventory staff: " + message);
@@ -259,7 +265,7 @@ public class InputPresenter implements InputContract.Presenter {
         }
 
         inputDetailRepository = new InputDetailRepository(context);
-        inputDetailRepository.updateInputDetail(id, updateInputDetailDto).enqueue(new BaseCallback<>() {
+        inputDetailRepository.updateInputDetail(id, updateInputDetailDto).enqueue(new BaseCallback<>(context) {
             @Override
             public void onSuccess(Void data) {
                 if (view != null) {
@@ -270,6 +276,7 @@ public class InputPresenter implements InputContract.Presenter {
 
             @Override
             public void onError(int code, String message) {
+                super.onError(code, message);
                 if (view != null) {
                     view.hideLoading();
                     view.showError("Error updating input details: " + message);

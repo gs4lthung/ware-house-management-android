@@ -1,9 +1,6 @@
 package com.example.ware_house_management_android.adapters;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +14,10 @@ import com.example.ware_house_management_android.R;
 import com.example.ware_house_management_android.interfaces.OnItemClickListener;
 import com.example.ware_house_management_android.models.InputModel;
 import com.example.ware_house_management_android.utils.AppUtil;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 
 import org.json.JSONException;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
 
 public class InputAdapter extends RecyclerView.Adapter<InputAdapter.ViewHolder> {
@@ -40,7 +35,7 @@ public class InputAdapter extends RecyclerView.Adapter<InputAdapter.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.list_item_input, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_input, parent, false);
         return new InputAdapter.ViewHolder(view);
     }
 

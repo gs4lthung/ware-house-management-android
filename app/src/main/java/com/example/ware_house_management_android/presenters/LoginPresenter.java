@@ -92,7 +92,7 @@ public class LoginPresenter implements LoginContract.Presenter {
 
         authService = AuthRepository.getAuthService();
         authService.login(loginRequestDto)
-                .enqueue(new BaseCallback<>() {
+                .enqueue(new BaseCallback<>(context) {
                     @Override
                     public void onSuccess(LoginResponseDto data) {
                         if (view != null) {

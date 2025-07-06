@@ -40,6 +40,13 @@ public class AppUtil {
         return new UserModel(jwtPayloadDecoded.getId(), jwtPayloadDecoded.getFullName(), jwtPayloadDecoded.getEmail(), jwtPayloadDecoded.getRole());
     }
 
+    public static void clearCurrentUser(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("user");
+        editor.apply();
+    }
+
     public static String dateToLocaleString(Date date) {
         if (date == null) {
             return "";

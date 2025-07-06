@@ -84,7 +84,7 @@ public class RegisterPresenter implements RegisterContract.Presenter {
         }
 
         authService.register(registerRequestDto)
-                .enqueue(new BaseCallback<RegisterResponseDto>() {
+                .enqueue(new BaseCallback<RegisterResponseDto>(context) {
                     @Override
                     public void onSuccess(RegisterResponseDto data) {
                         if (view != null) {

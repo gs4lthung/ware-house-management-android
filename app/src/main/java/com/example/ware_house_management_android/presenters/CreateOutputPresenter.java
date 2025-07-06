@@ -44,7 +44,7 @@ public class CreateOutputPresenter implements CreateOutputContract.Presenter {
         }
 
         itemRepository = new ItemRepository(context);
-        itemRepository.getItems().enqueue(new BaseCallback<>() {
+        itemRepository.getItems().enqueue(new BaseCallback<>(context) {
             @Override
             public void onSuccess(GetItemsResponseDto data) throws JSONException {
                 if (view != null) {
@@ -84,7 +84,7 @@ public class CreateOutputPresenter implements CreateOutputContract.Presenter {
         }
 
         userRepository = new UserRepository(context);
-        userRepository.getUsers("Customer").enqueue(new BaseCallback<>() {
+        userRepository.getUsers("Customer").enqueue(new BaseCallback<>(context) {
             @Override
             public void onSuccess(GetUsersResponseDto data) throws JSONException {
                 if (view != null) {

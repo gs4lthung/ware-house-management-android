@@ -41,7 +41,7 @@ public class CreateInputFragment extends Fragment implements CreateInputContract
 
     private RecyclerView listBaseItems;
 
-    private Spinner spinnerReportStaff;
+    private Spinner spinnerSupplier;
 
     private ProgressBar progressBar;
 
@@ -68,7 +68,7 @@ public class CreateInputFragment extends Fragment implements CreateInputContract
 
         listBaseItems = binding.recyclerViewBaseItems;
         listBaseItems.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(this.getContext()));
-        spinnerReportStaff = binding.spinnerReportStaff;
+        spinnerSupplier = binding.spinnerSupplier;
         progressBar = binding.progressBar;
 
         createInputBaseItemAdapter = new CreateInputBaseItemAdapter(this.getContext(), null);
@@ -77,7 +77,7 @@ public class CreateInputFragment extends Fragment implements CreateInputContract
             listBaseItems.setAdapter(createInputBaseItemAdapter);
         });
         userViewModel.getSuppliersList().observe(getViewLifecycleOwner(), suppliers -> {
-            setReportStaffSpinnerAdapter(suppliers);
+            setSupplierSpinnerAdapter(suppliers);
         });
 
 
@@ -95,7 +95,7 @@ public class CreateInputFragment extends Fragment implements CreateInputContract
 
             CreateInputDto createInputDto = new CreateInputDto(
                     reportStaff.getId(),
-                    userViewModel.getSuppliersList().getValue().get(spinnerReportStaff.getSelectedItemPosition()).getId(),
+                    userViewModel.getSuppliersList().getValue().get(spinnerSupplier.getSelectedItemPosition()).getId(),
                     descriptionEditText.getText().toString(),
                     inputDetails
             );
@@ -111,17 +111,17 @@ public class CreateInputFragment extends Fragment implements CreateInputContract
         return root;
     }
 
-    private void setReportStaffSpinnerAdapter(ArrayList<UserModel> suppliers) {
+    private void setSupplierSpinnerAdapter(ArrayList<UserModel> suppliers) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            ArrayAdapter<String> reportStaffSpinnerAdapter = new ArrayAdapter<>(
+            ArrayAdapter<String> supplierSpinnerAdapter = new ArrayAdapter<>(
                     getContext(),
                     android.R.layout.simple_spinner_item,
                     suppliers.stream().map(UserModel::getFullName)
                             .toList()
             );
-            reportStaffSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinnerReportStaff.setAdapter(reportStaffSpinnerAdapter);
-            spinnerReportStaff.setSelection(0);
+            supplierSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinnerSupplier.setAdapter(supplierSpinnerAdapter);
+            spinnerSupplier.setSelection(0);
         }
     }
 
@@ -150,8 +150,8 @@ public class CreateInputFragment extends Fragment implements CreateInputContract
         if (listBaseItems != null) {
             listBaseItems.setVisibility(View.GONE);
         }
-        if (spinnerReportStaff != null) {
-            spinnerReportStaff.setVisibility(View.GONE);
+        if (spinnerSupplier != null) {
+            spinnerSupplier.setVisibility(View.GONE);
         }
         if (binding != null) {
             binding.btnSubmit.setEnabled(false);
@@ -169,8 +169,8 @@ public class CreateInputFragment extends Fragment implements CreateInputContract
         if (listBaseItems != null) {
             listBaseItems.setVisibility(View.VISIBLE);
         }
-        if (spinnerReportStaff != null) {
-            spinnerReportStaff.setVisibility(View.VISIBLE);
+        if (spinnerSupplier != null) {
+            spinnerSupplier.setVisibility(View.VISIBLE);
         }
         if (binding != null) {
             binding.btnSubmit.setEnabled(true);

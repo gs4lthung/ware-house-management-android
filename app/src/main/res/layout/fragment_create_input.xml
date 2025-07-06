@@ -19,7 +19,7 @@
         >
 
         <Spinner
-            android:id="@+id/spinner_report_staff"
+            android:id="@+id/spinner_supplier"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -62,7 +62,6 @@
                 android:id="@+id/table_layout_base_items"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
                 android:padding="8dp"
                 android:stretchColumns="*">
 
