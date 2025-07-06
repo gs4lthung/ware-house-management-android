@@ -46,7 +46,7 @@ public class CreateInputPresenter implements CreateInputContract.Presenter {
         }
 
         baseItemRepository = new BaseItemRepository(context);
-        baseItemRepository.getBaseItems().enqueue(new BaseCallback<>() {
+        baseItemRepository.getBaseItems().enqueue(new BaseCallback<>(context) {
             @Override
             public void onSuccess(GetBaseItemsResponseDto data) {
                 if (view != null) {
@@ -94,7 +94,7 @@ public class CreateInputPresenter implements CreateInputContract.Presenter {
         }
 
         userRepository = new UserRepository(context);
-        userRepository.getUsers("Supplier").enqueue(new BaseCallback<>() {
+        userRepository.getUsers("Supplier").enqueue(new BaseCallback<>(context) {
             @Override
             public void onSuccess(GetUsersResponseDto data) {
                 if (view != null) {
@@ -136,7 +136,7 @@ public class CreateInputPresenter implements CreateInputContract.Presenter {
         }
 
         inputRepository = new InputRepository(context);
-        inputRepository.createInput(createInputDto).enqueue(new BaseCallback<>() {
+        inputRepository.createInput(createInputDto).enqueue(new BaseCallback<>(context) {
             @Override
             public void onSuccess(CreateInputDto data) {
                 if (view != null) {
