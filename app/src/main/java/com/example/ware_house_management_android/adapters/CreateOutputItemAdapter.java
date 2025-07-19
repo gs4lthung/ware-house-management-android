@@ -122,4 +122,8 @@ public class CreateOutputItemAdapter extends RecyclerView.Adapter<CreateOutputIt
         this.itemList = itemList;
         notifyDataSetChanged();
     }
+
+    public ArrayList<CreateOutputDetailsDto> getOutputDetails() {
+        return outputDetailsList;
+    }
 }
