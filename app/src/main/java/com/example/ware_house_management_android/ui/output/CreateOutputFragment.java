@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -20,8 +22,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ware_house_management_android.adapters.CreateOutputItemAdapter;
 import com.example.ware_house_management_android.contracts.CreateOutputContract;
 import com.example.ware_house_management_android.databinding.FragmentCreateOutputBinding;
+import com.example.ware_house_management_android.dtos.output.CreateOutputDto;
+import com.example.ware_house_management_android.dtos.output_details.CreateOutputDetailsDto;
 import com.example.ware_house_management_android.models.UserModel;
 import com.example.ware_house_management_android.presenters.CreateOutputPresenter;
+import com.example.ware_house_management_android.utils.AppUtil;
 import com.example.ware_house_management_android.view_models.ItemViewModel;
 import com.example.ware_house_management_android.view_models.UserViewModel;
 
@@ -74,6 +79,29 @@ public class CreateOutputFragment extends Fragment implements CreateOutputContra
             }
         });
 
+        UserModel reportStaff = AppUtil.currentUser(getContext());
+        EditText descriptionEditText = binding.etDescription;
+        Button createOutputButton = binding.btnSubmit;
+        createOutputButton.setOnClickListener(v -> {
+            ArrayList<CreateOutputDetailsDto> outputDetails = new ArrayList<>();
+            for (CreateOutputDetailsDto outputDetail : createOutputItemAdapter.getOutputDetails()) {
+                if (outputDetail.getQuantity() > 0) {
+                    outputDetails.add(outputDetail);
+                }
+            }
+
+            CreateOutputDto createOutputDto = new CreateOutputDto(
+                    reportStaff.getId(),
+                    userViewModel.getCustomersList().getValue().get(spinnerCustomer.getSelectedItemPosition()).getId(),
+                    descriptionEditText.getText().toString(),
+                    outputDetails);
+
+            try {
+                createOutputPresenter.createOutput(createOutputDto);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         return root;
     }
@@ -103,11 +131,33 @@ public class CreateOutputFragment extends Fragment implements CreateOutputContra
 
     @Override
     public void showLoading() {
+        if (progressBar != null) {
+            progressBar.setVisibility(View.VISIBLE);
+        } else {
+            Log.w("CreateOutputFragment", "ProgressBar is null");
+        }
+
+        if (listItems != null) {
+            listItems.setVisibility(View.GONE);
+        } else {
+            Log.w("CreateOutputFragment", "RecyclerView is null");
+        }
 
     }
 
     @Override
     public void hideLoading() {
 
+        if (progressBar != null) {
+            progressBar.setVisibility(View.GONE);
+        } else {
+            Log.w("CreateOutputFragment", "ProgressBar is null");
+        }
+
+        if (listItems != null) {
+            listItems.setVisibility(View.VISIBLE);
+        } else {
+            Log.w("CreateOutputFragment", "RecyclerView is null");
+        }
     }
 }

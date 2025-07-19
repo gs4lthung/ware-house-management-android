@@ -10,6 +10,7 @@ import com.example.ware_house_management_android.dtos.users.GetUsersResponseDto;
 import com.example.ware_house_management_android.models.ItemModel;
 import com.example.ware_house_management_android.models.UserModel;
 import com.example.ware_house_management_android.repositories.ItemRepository;
+import com.example.ware_house_management_android.repositories.OutputRepository;
 import com.example.ware_house_management_android.repositories.UserRepository;
 import com.example.ware_house_management_android.utils.BaseCallback;
 import com.example.ware_house_management_android.view_models.ItemViewModel;
@@ -32,6 +33,7 @@ public class CreateOutputPresenter implements CreateOutputContract.Presenter {
         this.view = view;
     }
 
+    OutputRepository outputRepository;
     UserRepository userRepository;
     ItemRepository itemRepository;
 
@@ -121,6 +123,32 @@ public class CreateOutputPresenter implements CreateOutputContract.Presenter {
 
     @Override
     public void createOutput(CreateOutputDto createOutputDto) throws Exception {
+        if (view != null) {
+            view.showLoading();
+        }
 
+        if (createOutputDto == null) {
+            view.showError("CreateOutputDto cannot be null");
+            throw new IllegalArgumentException("CreateOutputDto cannot be null");
+        }
+
+        outputRepository = new OutputRepository(context);
+        outputRepository.createOutput(createOutputDto).enqueue(new BaseCallback<CreateOutputDto>(context) {
+            @Override
+            public void onSuccess(CreateOutputDto data) {
+                if (view != null) {
+                    view.hideLoading();
+                    view.showSuccess("Output created successfully");
+                }
+            }
+
+            @Override
+            public void onError(int code, String message) {
+                if (view != null) {
+                    view.hideLoading();
+                    view.showError(message);
+                }
+            }
+        });
     }
 }

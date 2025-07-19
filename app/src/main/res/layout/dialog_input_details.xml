@@ -169,7 +169,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:layout_width="@dimen/column_width"
+                            android:layout_width="200dp"
                             android:layout_height="wrap_content"
                             android:text="Email"
                             android:textSize="12sp"
