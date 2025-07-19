@@ -22,6 +22,7 @@ import com.example.ware_house_management_android.contracts.CreateOutputContract;
 import com.example.ware_house_management_android.databinding.FragmentCreateOutputBinding;
 import com.example.ware_house_management_android.models.UserModel;
 import com.example.ware_house_management_android.presenters.CreateOutputPresenter;
+import com.example.ware_house_management_android.utils.AppUtil;
 import com.example.ware_house_management_android.view_models.ItemViewModel;
 import com.example.ware_house_management_android.view_models.UserViewModel;
 
@@ -73,6 +74,8 @@ public class CreateOutputFragment extends Fragment implements CreateOutputContra
                 Log.w("CreateOutputFragment", "No customers found");
             }
         });
+
+        UserModel reportStaff = AppUtil.currentUser(getContext());
 
 
         return root;

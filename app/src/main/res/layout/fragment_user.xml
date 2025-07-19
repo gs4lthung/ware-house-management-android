@@ -60,7 +60,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="@dimen/column_width"
+                        android:layout_width="200dp"
                         android:text="Email"
                         android:textSize="16sp"
                         android:textStyle="bold" />
