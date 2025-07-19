@@ -3,6 +3,7 @@ package com.example.ware_house_management_android.adapters;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,7 +58,7 @@ public class CreateOutputItemAdapter extends RecyclerView.Adapter<CreateOutputIt
 
             @Override
             public void afterTextChanged(Editable s) {
-                outputDetailsList.removeIf(item -> item.getItemId() == item.getItemId());
+                outputDetailsList.removeIf(outputDetail -> outputDetail.getItemId().equals(item.get_id()));
 
                 int outputQty = s.toString().isEmpty() ? 0 : Integer.parseInt(s.toString());
 
@@ -82,7 +83,7 @@ public class CreateOutputItemAdapter extends RecyclerView.Adapter<CreateOutputIt
 
             @Override
             public void afterTextChanged(Editable s) {
-                outputDetailsList.removeIf(item -> item.getItemId() == item.getItemId());
+                outputDetailsList.removeIf(outputDetails -> outputDetails.getItemId().equals(item.get_id()));
                 Double outputPrice = s.toString().isEmpty() ? 0.0 : Double.parseDouble(s.toString());
 
                 if (outputPrice > 0) {
@@ -124,6 +125,7 @@ public class CreateOutputItemAdapter extends RecyclerView.Adapter<CreateOutputIt
     }
 
     public ArrayList<CreateOutputDetailsDto> getOutputDetails() {
+        Log.i("CreateOutputItemAdapter", "Getting output details: " + outputDetailsList.size() + " items");
         return outputDetailsList;
     }
 }
