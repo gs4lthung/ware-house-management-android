@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.input.InputFragment">
+    tools:context=".ui.output.OutputFragment">
 
     <TextView
-        android:id="@+id/text_list_input"
+        android:id="@+id/text_list_output"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="Import Management - Input List"
+        android:text="Export Management - Output List"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +28,7 @@
         app:layout_constraintBottom_toTopOf="@id/progress_bar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_list_input">
+        app:layout_constraintTop_toBottomOf="@id/text_list_output">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -36,7 +36,7 @@
             android:orientation="vertical">
 
             <TableLayout
-                android:id="@+id/table_layout_list_input"
+                android:id="@+id/table_layout_list_output"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
@@ -114,7 +114,7 @@
             </TableLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view_input"
+                android:id="@+id/recycler_view_output"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
