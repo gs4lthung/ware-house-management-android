@@ -3,41 +3,43 @@ package com.example.ware_house_management_android.models;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class InputModel {
+public class OutputModel {
     private String _id;
     private String description;
     private String batchNumber;
-
-    private Double totalPrice;
     private String status;
-    private UserModel reportStaffId;
-    private UserModel supplierId;
-    private ArrayList<UserModel> inventoryStaffIds;
+    private Double totalPrice;
+
     private Date fromDate;
     private Date toDate;
     private Date createdAt;
     private Date updatedAt;
+    private UserModel reportStaffId;
+    private UserModel customerId;
+    private UserModel managerId;
+    private ArrayList<UserModel> inventoryStaffIds;
 
-    public InputModel(String _id, String description, String batchNumber, Double totalPrice, String status, UserModel reportStaffId, UserModel supplierId, ArrayList<UserModel> inventoryStaffIds, Date fromDate, Date toDate, Date createdAt, Date updatedAt) {
+    public OutputModel(String _id, String description, String batchNumber, String status, Double totalPrice, Date fromDate, Date toDate, Date createdAt, Date updatedAt, UserModel reportStaffId, UserModel customerId, UserModel managerId, ArrayList<UserModel> inventoryStaffIds) {
         this._id = _id;
         this.description = description;
         this.batchNumber = batchNumber;
-        this.totalPrice = totalPrice;
         this.status = status;
-        this.reportStaffId = reportStaffId;
-        this.supplierId = supplierId;
-        this.inventoryStaffIds = inventoryStaffIds;
+        this.totalPrice = totalPrice;
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.reportStaffId = reportStaffId;
+        this.customerId = customerId;
+        this.managerId = managerId;
+        this.inventoryStaffIds = inventoryStaffIds;
     }
 
-    public String getId() {
+    public String get_id() {
         return _id;
     }
 
-    public void setId(String _id) {
+    public void set_id(String _id) {
         this._id = _id;
     }
 
@@ -57,14 +59,6 @@ public class InputModel {
         this.batchNumber = batchNumber;
     }
 
-    public Double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(Double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -73,29 +67,14 @@ public class InputModel {
         this.status = status;
     }
 
-    public UserModel getReportStaffId() {
-        return reportStaffId;
+    public Double getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setReportStaffId(UserModel reportStaffId) {
-        this.reportStaffId = reportStaffId;
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
-    public UserModel getSupplierId() {
-        return supplierId;
-    }
-
-    public void setSupplierId(UserModel supplierId) {
-        this.supplierId = supplierId;
-    }
-
-    public ArrayList<UserModel> getInventoryStaffIds() {
-        return inventoryStaffIds;
-    }
-
-    public void setInventoryStaffIds(ArrayList<UserModel> inventoryStaffIds) {
-        this.inventoryStaffIds = inventoryStaffIds;
-    }
     public Date getFromDate() {
         return fromDate;
     }
@@ -126,5 +105,37 @@ public class InputModel {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public UserModel getReportStaffId() {
+        return reportStaffId;
+    }
+
+    public void setReportStaffId(UserModel reportStaffId) {
+        this.reportStaffId = reportStaffId;
+    }
+
+    public UserModel getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(UserModel customerId) {
+        this.customerId = customerId;
+    }
+
+    public UserModel getManagerId() {
+        return managerId;
+    }
+
+    public void setManagerId(UserModel managerId) {
+        this.managerId = managerId;
+    }
+
+    public ArrayList<UserModel> getInventoryStaffIds() {
+        return inventoryStaffIds;
+    }
+
+    public void setInventoryStaffIds(ArrayList<UserModel> inventoryStaffIds) {
+        this.inventoryStaffIds = inventoryStaffIds;
     }
 }

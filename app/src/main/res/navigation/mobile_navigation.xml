@@ -33,4 +33,11 @@
         android:name="com.example.ware_house_management_android.ui.output.CreateOutputFragment"
         android:label="Create Export"
         tools:layout="@layout/fragment_create_output" />
+
+    <fragment
+        android:id="@+id/nav_list_outputs"
+        android:name="com.example.ware_house_management_android.ui.output.OutputFragment"
+        android:label="Exports"
+        tools:layout="@layout/fragment_output" />
+
 </navigation>

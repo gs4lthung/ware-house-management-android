@@ -13,47 +13,48 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ware_house_management_android.R;
 import com.example.ware_house_management_android.interfaces.OnItemClickListener;
 import com.example.ware_house_management_android.models.InputModel;
+import com.example.ware_house_management_android.models.OutputModel;
 import com.example.ware_house_management_android.utils.AppUtil;
-
 
 import org.json.JSONException;
 
 import java.util.ArrayList;
 
-public class InputAdapter extends RecyclerView.Adapter<InputAdapter.ViewHolder> {
+public class OutputAdapter extends RecyclerView.Adapter<OutputAdapter.ViewHolder> {
     Context context;
-    ArrayList<InputModel> inputList;
+    ArrayList<OutputModel> outputList;
+    OnItemClickListener<OutputModel> onItemClickListener;
 
-    OnItemClickListener<InputModel> onItemClickListener;
-
-    public InputAdapter(Context context, ArrayList<InputModel> inputList, OnItemClickListener<InputModel> onItemClickListener) {
+    public OutputAdapter(Context context, ArrayList<OutputModel> outputList, OnItemClickListener<OutputModel> onItemClickListener) {
         this.context = context;
-        this.inputList = inputList;
+        this.outputList = outputList;
         this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_input, parent, false);
-        return new InputAdapter.ViewHolder(view);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_output, parent, false);
+        return new OutputAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        InputModel input = inputList.get(position);
-        holder.requiredBy.setText(input.getSupplierId().getFullName());
-        holder.writtenBy.setText(input.getReportStaffId().getFullName());
-        holder.description.setText(input.getDescription());
-        holder.status.setText(input.getStatus());
-        holder.fromDate.setText(AppUtil.dateToLocaleString(input.getFromDate()));
-        holder.toDate.setText(AppUtil.dateToLocaleString(input.getToDate()));
-        holder.createdAt.setText(AppUtil.dateToLocaleString(input.getCreatedAt()));
-        holder.updatedAt.setText(AppUtil.dateToLocaleString(input.getUpdatedAt()));
+    public void onBindViewHolder(@NonNull OutputAdapter.ViewHolder holder, int position) {
+        OutputModel output = outputList.get(position);
+        if (output.getCustomerId() != null)
+            holder.requiredBy.setText(output.getCustomerId().getFullName());
+        if (output.getReportStaffId() != null)
+            holder.writtenBy.setText(output.getReportStaffId().getFullName());
+        holder.description.setText(output.getDescription());
+        holder.status.setText(output.getStatus());
+        holder.fromDate.setText(AppUtil.dateToLocaleString(output.getFromDate()));
+        holder.toDate.setText(AppUtil.dateToLocaleString(output.getToDate()));
+        holder.createdAt.setText(AppUtil.dateToLocaleString(output.getCreatedAt()));
+        holder.updatedAt.setText(AppUtil.dateToLocaleString(output.getUpdatedAt()));
         holder.detailButton.setOnClickListener(view ->
         {
             try {
-                onItemClickListener.onItemClick(input);
+                onItemClickListener.onItemClick(output);
             } catch (JSONException e) {
                 throw new RuntimeException(e);
             }
@@ -62,7 +63,7 @@ public class InputAdapter extends RecyclerView.Adapter<InputAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return inputList.size();
+        return outputList.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
