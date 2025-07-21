@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.example.ware_house_management_android.dtos.APIResponseDto;
 import com.example.ware_house_management_android.dtos.output.CreateOutputDto;
+import com.example.ware_house_management_android.dtos.output.GetOutputByIdResponseDto;
 import com.example.ware_house_management_android.dtos.output.GetOutputsResponseDto;
 import com.example.ware_house_management_android.services.OutputService;
 import com.example.ware_house_management_android.utils.APIClient;
@@ -46,6 +47,17 @@ public class OutputRepository {
         }
 
         return outputService.getOutputs(authHeader, filter, OutputService.SELECT_PATH, OutputService.EXPAND_PATH);
+    }
+
+    public Call<APIResponseDto<GetOutputByIdResponseDto>> getOutputById(String id) {
+        String accessToken = sharedPreferences.getString("access_token", "");
+
+        if (accessToken == null) {
+            throw new IllegalStateException("Access token is not available in SharedPreferences");
+        }
+
+        String authHeader = "Bearer " + accessToken;
+        return outputService.getOutputById(authHeader, id);
     }
 
     public Call<APIResponseDto<CreateOutputDto>> createOutput(CreateOutputDto createOutputDto) {

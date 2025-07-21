@@ -83,7 +83,7 @@ public class InputPresenter implements InputContract.Presenter {
     }
 
     @Override
-    public void getInputById(String id) throws JSONException {
+    public void getInputById(String id) {
         if (view != null) {
             view.showLoading();
         }

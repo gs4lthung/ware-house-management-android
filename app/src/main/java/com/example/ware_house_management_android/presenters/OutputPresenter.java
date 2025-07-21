@@ -1,10 +1,15 @@
 package com.example.ware_house_management_android.presenters;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.ware_house_management_android.contracts.OutputContract;
+import com.example.ware_house_management_android.dtos.output.GetOutputByIdResponseDto;
 import com.example.ware_house_management_android.dtos.output.GetOutputsResponseDto;
+import com.example.ware_house_management_android.dtos.output_details.UpdateOutputDetailDto;
+import com.example.ware_house_management_android.models.OutputDetailsModel;
 import com.example.ware_house_management_android.models.OutputModel;
+import com.example.ware_house_management_android.repositories.OutputDetailRepository;
 import com.example.ware_house_management_android.repositories.OutputRepository;
 import com.example.ware_house_management_android.repositories.UserRepository;
 import com.example.ware_house_management_android.utils.BaseCallback;
@@ -29,6 +34,7 @@ public class OutputPresenter implements OutputContract.Presenter {
     }
 
     OutputRepository outputRepository;
+    OutputDetailRepository outputDetailRepository;
     UserRepository userRepository;
 
     @Override
@@ -70,7 +76,45 @@ public class OutputPresenter implements OutputContract.Presenter {
     }
 
     @Override
-    public void getOutputById(String id) throws JSONException {
+    public void getOutputById(String id) {
+        if (view != null) {
+            view.showLoading();
+        }
+
+        ArrayList<OutputDetailsModel> outputDetails = new ArrayList<>();
+
+        outputRepository = new OutputRepository(context);
+        outputRepository.getOutputById(id).enqueue(new BaseCallback<>(context) {
+            @Override
+            public void onSuccess(GetOutputByIdResponseDto data) throws JSONException {
+                if (view != null) {
+                    view.hideLoading();
+                    view.showSuccess("Output details fetched successfully");
+                }
+
+                if (data == null || data.getOutput() == null) {
+                    view.showError("No input found with the given ID");
+                    return;
+                }
+
+                for (OutputDetailsModel outputDetail : data.getOutputDetails()) {
+                    outputDetails.add(outputDetail);
+                }
+
+                outputViewModel.setOutputDetails(outputDetails);
+            }
+
+            @Override
+            public void onError(int code, String message) {
+                super.onError(code, message);
+                if (view != null) {
+                    view.hideLoading();
+                    view.showError("Error fetching output details: " + message);
+                    Log.e("OutputPresenter", "Error fetching output details: " + message);
+                }
+            }
+        });
+
 
     }
 
@@ -92,5 +136,33 @@ public class OutputPresenter implements OutputContract.Presenter {
     @Override
     public void getInventoryStaffList() throws JSONException {
 
+    }
+
+    @Override
+    public void updateOutputDetails(String id, UpdateOutputDetailDto updateOutputDetailDto) throws JSONException {
+        if (view != null) {
+            view.showLoading();
+        }
+
+        outputDetailRepository = new OutputDetailRepository(context);
+        outputDetailRepository.updateOutputDetail(id, updateOutputDetailDto).enqueue(new BaseCallback<>(context) {
+            @Override
+            public void onSuccess(Void data) {
+                if (view != null) {
+                    view.hideLoading();
+                    view.showSuccess("Output details updated successfully");
+                }
+            }
+
+            @Override
+            public void onError(int code, String message) {
+                super.onError(code, message);
+                if (view != null) {
+                    view.hideLoading();
+                    view.showError("Error updating output details: " + message);
+                    Log.e("OutputPresenter", "Error updating output details: " + message);
+                }
+            }
+        });
     }
 }
