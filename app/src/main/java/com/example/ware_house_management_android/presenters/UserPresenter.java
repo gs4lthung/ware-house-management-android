@@ -63,8 +63,6 @@ public class UserPresenter implements UserContract.Presenter {
                     view.hideLoading();
                     view.showError("Error fetching users: " + message);
                 }
-
-
             }
         });
     }

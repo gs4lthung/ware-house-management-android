@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,20 +31,24 @@ public class UserFragment extends Fragment implements UserContract.View {
 
     private RecyclerView listUsers;
 
+    private ProgressBar progressBar;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        UserViewModel homeViewModel =
+        UserViewModel userViewModel =
                 new ViewModelProvider(this).get(UserViewModel.class);
 
         binding = FragmentUserBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textUser;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        progressBar = binding.progressBarUser;
 
-        userPresenter = new UserPresenter(this.getContext(), homeViewModel, this);
+        final TextView textView = binding.textUser;
+        userViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
+        userPresenter = new UserPresenter(this.getContext(), userViewModel, this);
         try {
-            if (!homeViewModel.hasLoadedUsers())
+            if (!userViewModel.hasLoadedUsers())
                 userPresenter.getUsersList();
         } catch (JSONException e) {
             throw new RuntimeException(e);
@@ -52,9 +57,9 @@ public class UserFragment extends Fragment implements UserContract.View {
         listUsers = binding.recyclerViewUser;
         listUsers.setLayoutManager(new GridLayoutManager(this.getContext(), 1));
 
-        Log.i("UserFragment", "Users list size: " + homeViewModel.getUsersList().getValue().size());
+        Log.i("UserFragment", "Users list size: " + userViewModel.getUsersList().getValue().size());
 
-        homeViewModel.getUsersList().observe(getViewLifecycleOwner(), users -> {
+        userViewModel.getUsersList().observe(getViewLifecycleOwner(), users -> {
             Log.i("UserFragment", "Users list updated, size: " + users.size());
             listUsers.setAdapter(new UserAdapter(this.getContext(), users));
         });
@@ -80,11 +85,13 @@ public class UserFragment extends Fragment implements UserContract.View {
 
     @Override
     public void showLoading() {
-
+        progressBar.setVisibility(View.VISIBLE);
+        listUsers.setVisibility(View.GONE);
     }
 
     @Override
     public void hideLoading() {
-
+        progressBar.setVisibility(View.GONE);
+        listUsers.setVisibility(View.VISIBLE);
     }
 }
