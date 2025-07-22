@@ -29,6 +29,7 @@ import com.example.ware_house_management_android.contracts.InputContract;
 import com.example.ware_house_management_android.databinding.FragmentInputBinding;
 import com.example.ware_house_management_android.dtos.input_details.UpdateInputDetailDto;
 import com.example.ware_house_management_android.dtos.inputs.AssignInputDto;
+import com.example.ware_house_management_android.models.InputModel;
 import com.example.ware_house_management_android.models.UserModel;
 import com.example.ware_house_management_android.presenters.InputPresenter;
 import com.example.ware_house_management_android.utils.AppUtil;
@@ -119,7 +120,6 @@ public class InputFragment extends Fragment implements InputContract.View {
                                     Toast.makeText(getContext(), "No input details to update", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
-
                                 for (UpdateInputDetailDto detail : updateInputDetails) {
                                     try {
                                         inputPresenter.updateInputDetails(item.getId(), detail);
@@ -182,7 +182,8 @@ public class InputFragment extends Fragment implements InputContract.View {
         return root;
     }
 
-    private void showAssignStaffDialog(String inputId, ArrayList<UserModel> inventoryStaffs) {
+    @Override
+    public void showAssignStaffDialog(String inputId, ArrayList<UserModel> inventoryStaffs) {
         View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_assign_inventory_staffs, null);
         Dialog dialog = new Dialog(requireContext());
         dialog.setContentView(dialogView);
@@ -236,7 +237,8 @@ public class InputFragment extends Fragment implements InputContract.View {
         dialog.show();
     }
 
-    private void showDatePickerDialog(TextView targetTextView) {
+    @Override
+    public void showDatePickerDialog(TextView textView) {
         final Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
@@ -244,12 +246,11 @@ public class InputFragment extends Fragment implements InputContract.View {
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), (view, year1, month1, dayOfMonth) -> {
             String date = String.format(Locale.getDefault(), "%04d-%02d-%02d", year1, month1 + 1, dayOfMonth);
-            targetTextView.setText(date);
+            textView.setText(date);
         }, year, month, day);
 
         datePickerDialog.show();
     }
-
 
     @Override
     public void showSuccess(String message) {

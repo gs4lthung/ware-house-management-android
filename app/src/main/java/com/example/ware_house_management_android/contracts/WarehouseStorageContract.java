@@ -1,5 +1,9 @@
 package com.example.ware_house_management_android.contracts;
 
+import com.example.ware_house_management_android.models.WarehouseStorageModel;
+
+import java.util.ArrayList;
+
 public interface WarehouseStorageContract {
     interface View {
         void showSuccess(String message);
@@ -9,6 +13,8 @@ public interface WarehouseStorageContract {
         void showLoading();
 
         void hideLoading();
+
+        void showWarehouseStorageList(ArrayList<WarehouseStorageModel> warehouseStorageList);
     }
 
     interface Presenter {

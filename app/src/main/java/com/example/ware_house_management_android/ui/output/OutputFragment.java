@@ -175,7 +175,8 @@ public class OutputFragment extends Fragment implements OutputContract.View {
         return root;
     }
 
-    private void showAssignStaffDialog(String outputId, ArrayList<UserModel> inventoryStaffs) {
+    @Override
+    public void showAssignStaffDialog(String outputId, ArrayList<UserModel> inventoryStaffs) {
         View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_assign_inventory_staffs, null);
         Dialog dialog = new Dialog(requireContext());
         dialog.setContentView(dialogView);
@@ -229,7 +230,8 @@ public class OutputFragment extends Fragment implements OutputContract.View {
         dialog.show();
     }
 
-    private void showDatePickerDialog(TextView targetTextView) {
+    @Override
+    public void showDatePickerDialog(TextView targetTextView) {
         final Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);

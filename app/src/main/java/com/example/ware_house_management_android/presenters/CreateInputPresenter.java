@@ -130,6 +130,9 @@ public class CreateInputPresenter implements CreateInputContract.Presenter {
 
     @Override
     public void createInput(CreateInputDto createInputDto) throws Exception {
+        if(view != null) {
+            view.showLoading();
+        }
         if (createInputDto == null) {
             view.showError("CreateInputDto cannot be null");
             throw new IllegalArgumentException("CreateInputDto cannot be null");

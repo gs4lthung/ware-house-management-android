@@ -18,10 +18,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ware_house_management_android.adapters.UserAdapter;
 import com.example.ware_house_management_android.contracts.UserContract;
 import com.example.ware_house_management_android.databinding.FragmentUserBinding;
+import com.example.ware_house_management_android.models.UserModel;
 import com.example.ware_house_management_android.presenters.UserPresenter;
 import com.example.ware_house_management_android.view_models.UserViewModel;
 
 import org.json.JSONException;
+
+import java.util.ArrayList;
 
 public class UserFragment extends Fragment implements UserContract.View {
 
@@ -54,14 +57,8 @@ public class UserFragment extends Fragment implements UserContract.View {
             throw new RuntimeException(e);
         }
 
-        listUsers = binding.recyclerViewUser;
-        listUsers.setLayoutManager(new GridLayoutManager(this.getContext(), 1));
-
-        Log.i("UserFragment", "Users list size: " + userViewModel.getUsersList().getValue().size());
-
         userViewModel.getUsersList().observe(getViewLifecycleOwner(), users -> {
-            Log.i("UserFragment", "Users list updated, size: " + users.size());
-            listUsers.setAdapter(new UserAdapter(this.getContext(), users));
+            showUsersList(users);
         });
 
         return root;
@@ -71,6 +68,13 @@ public class UserFragment extends Fragment implements UserContract.View {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void showUsersList(ArrayList<UserModel> users) {
+        listUsers = binding.recyclerViewUser;
+        listUsers.setLayoutManager(new GridLayoutManager(this.getContext(), 1));
+        listUsers.setAdapter(new UserAdapter(this.getContext(), users));
     }
 
     @Override
@@ -85,13 +89,17 @@ public class UserFragment extends Fragment implements UserContract.View {
 
     @Override
     public void showLoading() {
-        progressBar.setVisibility(View.VISIBLE);
-        listUsers.setVisibility(View.GONE);
+        if (progressBar != null)
+            progressBar.setVisibility(View.VISIBLE);
+        if (listUsers != null)
+            listUsers.setVisibility(View.GONE);
     }
 
     @Override
     public void hideLoading() {
-        progressBar.setVisibility(View.GONE);
-        listUsers.setVisibility(View.VISIBLE);
+        if (progressBar != null)
+            progressBar.setVisibility(View.GONE);
+        if (listUsers != null)
+            listUsers.setVisibility(View.VISIBLE);
     }
 }
