@@ -1,5 +1,7 @@
 package com.example.ware_house_management_android.contracts;
 
+import com.example.ware_house_management_android.dtos.output_details.UpdateOutputDetailDto;
+
 import org.json.JSONException;
 
 import java.util.ArrayList;
@@ -28,6 +30,6 @@ public interface OutputContract {
 
         void getInventoryStaffList() throws JSONException;
 
-//        void updateOutputDetails(String id, UpdateOutputDetailDto updateOutputDetailDto) throws JSONException;
+        void updateOutputDetails(String id, UpdateOutputDetailDto updateOutputDetailDto) throws JSONException;
     }
 }
