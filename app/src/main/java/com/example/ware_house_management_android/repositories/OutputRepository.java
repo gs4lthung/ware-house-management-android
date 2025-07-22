@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.example.ware_house_management_android.dtos.APIResponseDto;
+import com.example.ware_house_management_android.dtos.inputs.AssignInputDto;
+import com.example.ware_house_management_android.dtos.output.ApproveOutputDto;
+import com.example.ware_house_management_android.dtos.output.AssignOutputDto;
 import com.example.ware_house_management_android.dtos.output.CreateOutputDto;
 import com.example.ware_house_management_android.dtos.output.GetOutputByIdResponseDto;
 import com.example.ware_house_management_android.dtos.output.GetOutputsResponseDto;
@@ -14,6 +17,8 @@ import com.example.ware_house_management_android.utils.AppUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 
@@ -69,5 +74,42 @@ public class OutputRepository {
 
         String authHeader = "Bearer " + accessToken;
         return outputService.createOutput(authHeader, createOutputDto);
+    }
+
+    public Call<APIResponseDto<Void>> approveOutput(String id) {
+        String accessToken = sharedPreferences.getString("access_token", "");
+
+        if (accessToken == null) {
+            throw new IllegalStateException("Access token is not available in SharedPreferences");
+        }
+
+        String authHeader = "Bearer " + accessToken;
+        return outputService.approveOutput(authHeader, id, new ApproveOutputDto(AppUtil.currentUser(context).getId().toString()));
+    }
+
+    public Call<APIResponseDto<Void>> assignOutput(String id, ArrayList<String> inventoryStaffIds, String fromDate, String toDate) {
+        String accessToken = sharedPreferences.getString("access_token", "");
+
+        if (accessToken == null) {
+            throw new IllegalStateException("Access token is not available in SharedPreferences");
+        }
+
+        String authHeader = "Bearer " + accessToken;
+        return outputService.assignOutput(authHeader, id, new AssignOutputDto(
+                inventoryStaffIds,
+                fromDate,
+                toDate
+        ));
+    }
+
+    public Call<APIResponseDto<Void>> completeOutput(String id) {
+        String accessToken = sharedPreferences.getString("access_token", "");
+
+        if (accessToken == null) {
+            throw new IllegalStateException("Access token is not available in SharedPreferences");
+        }
+
+        String authHeader = "Bearer " + accessToken;
+        return outputService.completeOutput(authHeader, id);
     }
 }

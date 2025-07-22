@@ -7,8 +7,10 @@ import com.example.ware_house_management_android.contracts.OutputContract;
 import com.example.ware_house_management_android.dtos.output.GetOutputByIdResponseDto;
 import com.example.ware_house_management_android.dtos.output.GetOutputsResponseDto;
 import com.example.ware_house_management_android.dtos.output_details.UpdateOutputDetailDto;
+import com.example.ware_house_management_android.dtos.users.GetUsersResponseDto;
 import com.example.ware_house_management_android.models.OutputDetailsModel;
 import com.example.ware_house_management_android.models.OutputModel;
+import com.example.ware_house_management_android.models.UserModel;
 import com.example.ware_house_management_android.repositories.OutputDetailRepository;
 import com.example.ware_house_management_android.repositories.OutputRepository;
 import com.example.ware_house_management_android.repositories.UserRepository;
@@ -120,22 +122,136 @@ public class OutputPresenter implements OutputContract.Presenter {
 
     @Override
     public void approveOutput(String id) {
+        if (view != null) {
+            view.showLoading();
+        }
+
+        outputRepository = new OutputRepository(context);
+        outputRepository.approveOutput(id).enqueue(new BaseCallback<>(context) {
+            @Override
+            public void onSuccess(Void data) throws JSONException {
+                if (view != null) {
+                    view.hideLoading();
+                    view.showSuccess("Output approved successfully");
+                }
+
+                getOutputList();
+            }
+
+            @Override
+            public void onError(int code, String message) {
+                super.onError(code, message);
+                if (view != null) {
+                    view.hideLoading();
+                    view.showError("Error approving output: " + message);
+                    Log.e("OutputPresenter", "Error approving output: " + message);
+                }
+            }
+        });
 
     }
 
     @Override
-    public void assignOutput(String id, ArrayList<String> inventoryStaffIds, String fromDate, String toDate) throws JSONException {
+    public void assignOutput(String id, ArrayList<String> inventoryStaffIds, String fromDate, String toDate) {
+        if (view != null) {
+            view.showLoading();
+        }
+
+        outputRepository = new OutputRepository(context);
+        outputRepository.assignOutput(id, inventoryStaffIds, fromDate, toDate).enqueue(new BaseCallback<>(context) {
+            @Override
+            public void onSuccess(Void data) throws JSONException {
+                if (view != null) {
+                    view.hideLoading();
+                    view.showSuccess("Output assigned successfully");
+                }
+
+                getOutputList();
+            }
+
+            @Override
+            public void onError(int code, String message) {
+                super.onError(code, message);
+                if (view != null) {
+                    view.hideLoading();
+                    view.showError("Error assigning output: " + message);
+                    Log.e("OutputPresenter", "Error assigning output: " + message);
+                }
+            }
+        });
 
     }
 
     @Override
     public void completeOutput(String id) {
+        if (view != null) {
+            view.showLoading();
+        }
+
+        outputRepository = new OutputRepository(context);
+        outputRepository.completeOutput(id).enqueue(new BaseCallback<>(context) {
+            @Override
+            public void onSuccess(Void data) throws JSONException {
+                if (view != null) {
+                    view.hideLoading();
+                    view.showSuccess("Output completed successfully");
+                }
+
+                getOutputList();
+            }
+
+            @Override
+            public void onError(int code, String message) {
+                super.onError(code, message);
+                if (view != null) {
+                    view.hideLoading();
+                    view.showError("Error completing output: " + message);
+                    Log.e("OutputPresenter", "Error completing output: " + message);
+                }
+            }
+        });
 
     }
 
     @Override
     public void getInventoryStaffList() throws JSONException {
+        ArrayList<UserModel> inventoryStaffs = new ArrayList<>();
+        if (view != null) {
+            view.showLoading();
+        }
 
+        userRepository = new UserRepository(context);
+        userRepository.getUsers("Inventory Staff").enqueue(new BaseCallback<>(context) {
+            @Override
+            public void onSuccess(GetUsersResponseDto data) {
+                if (view != null) {
+                    view.hideLoading();
+                    view.showSuccess("Inventory staff fetched successfully");
+                }
+
+                if (data == null || data.getUsers() == null) {
+                    view.showError("No inventory staff found");
+                    return;
+                }
+
+                for (UserModel user : data.getUsers()) {
+                    inventoryStaffs.add(user);
+                }
+
+                userViewModel.setToAssignInventoryStaffsList(inventoryStaffs);
+
+            }
+
+            @Override
+            public void onError(int code, String message) {
+                super.onError(code, message);
+                if (view != null) {
+                    view.hideLoading();
+                    view.showError("Error fetching inventory staff: " + message);
+                    Log.e("InputPresenter", "Error fetching inventory staff: " + message);
+                }
+            }
+        });
     }
 
     @Override
