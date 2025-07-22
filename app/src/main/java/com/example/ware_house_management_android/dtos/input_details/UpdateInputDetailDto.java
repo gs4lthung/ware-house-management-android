@@ -15,7 +15,7 @@ public class UpdateInputDetailDto {
         if (this == o) return true;
         if (!(o instanceof UpdateInputDetailDto)) return false;
         UpdateInputDetailDto that = (UpdateInputDetailDto) o;
-        return id == that.id; // Treat objects with same ID as equal
+        return id == that.id;
     }
 
     @Override

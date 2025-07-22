@@ -54,19 +54,24 @@ public class OutputDetailsAdapter extends RecyclerView.Adapter<OutputDetailsAdap
             }
 
             @Override
-            public void afterTextChanged(android.text.Editable s) {
-                updateOutputDetailsList.removeIf(item -> item.getId() == outputDetails.get_id());
+            public void afterTextChanged(Editable s) {
+                try {
+                    // Parse input or use existing value if empty
+                    int quantity = s.toString().isEmpty() ? outputDetails.getQuantity() : Integer.parseInt(s.toString());
 
-                int quantity = s.toString().isEmpty() ? 0 : Integer.parseInt(s.toString());
-
-                if (quantity > 0) {
-                    updateOutputDetailsList.add(new UpdateOutputDetailDto(
-                            outputDetails.get_id(),
-                            quantity,
-                            outputDetails.getOutputPrice(
-                            ),
-                            outputDetails.getStatus()
-                    ));
+                    UpdateOutputDetailDto existingDto = findUpdateOutputDetailDto(outputDetails.get_id());
+                    if (existingDto != null) {
+                        existingDto.setQuantity(quantity);
+                    } else if (quantity > 0) {
+                        updateOutputDetailsList.add(new UpdateOutputDetailDto(
+                                outputDetails.get_id(),
+                                quantity,
+                                outputDetails.getOutputPrice() != null ? outputDetails.getOutputPrice() : 0.0,
+                                outputDetails.getStatus()
+                        ));
+                    }
+                } catch (NumberFormatException e) {
+                    holder.quantity.setText(String.valueOf(outputDetails.getQuantity()));
                 }
             }
         });
@@ -84,16 +89,23 @@ public class OutputDetailsAdapter extends RecyclerView.Adapter<OutputDetailsAdap
 
             @Override
             public void afterTextChanged(Editable s) {
-                updateOutputDetailsList.removeIf(item -> item.getId() == outputDetails.get_id());
+                try {
+                    double outputPrice = s.toString().isEmpty() ? (outputDetails.getOutputPrice() != null ? outputDetails.getOutputPrice() : 0.0) : Double.parseDouble(s.toString());
 
-                Double outputPrice = s.toString().isEmpty() ? 0 : Double.parseDouble(s.toString());
-                if (outputPrice > 0) {
-                    updateOutputDetailsList.add(new UpdateOutputDetailDto(
-                            outputDetails.get_id(),
-                            outputDetails.getQuantity(),
-                            outputPrice,
-                            outputDetails.getStatus()
-                    ));
+                    UpdateOutputDetailDto existingDto = findUpdateOutputDetailDto(outputDetails.get_id());
+                    if (existingDto != null) {
+                        existingDto.setOutputPrice(outputPrice);
+                    } else if (outputPrice > 0) {
+                        updateOutputDetailsList.add(new UpdateOutputDetailDto(
+                                outputDetails.get_id(),
+                                outputDetails.getQuantity(),
+                                outputPrice,
+                                outputDetails.getStatus()
+                        ));
+                    }
+                } catch (NumberFormatException e) {
+                    // Reset to original value
+                    holder.outputPrice.setText(outputDetails.getOutputPrice() != null ? String.valueOf(outputDetails.getOutputPrice()) : "0.0");
                 }
             }
         });
@@ -141,5 +153,14 @@ public class OutputDetailsAdapter extends RecyclerView.Adapter<OutputDetailsAdap
                     break;
             }
         }
+    }
+
+    private UpdateOutputDetailDto findUpdateOutputDetailDto(String id) {
+        for (UpdateOutputDetailDto dto : updateOutputDetailsList) {
+            if (dto.getId().equals(id)) {
+                return dto;
+            }
+        }
+        return null;
     }
 }

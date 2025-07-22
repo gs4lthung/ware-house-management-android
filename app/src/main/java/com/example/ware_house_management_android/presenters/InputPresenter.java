@@ -53,7 +53,6 @@ public class InputPresenter implements InputContract.Presenter {
             public void onSuccess(GetInputsResponseDto data) {
                 if (view != null) {
                     view.hideLoading();
-                    view.showSuccess("Inputs fetched successfully");
                 }
 
                 if (data == null) {
@@ -96,7 +95,6 @@ public class InputPresenter implements InputContract.Presenter {
             public void onSuccess(GetInputByIdResponseDto data) {
                 if (view != null) {
                     view.hideLoading();
-                    view.showSuccess("Input details fetched successfully");
                 }
 
                 if (data == null || data.getInput() == null) {
@@ -230,7 +228,6 @@ public class InputPresenter implements InputContract.Presenter {
             public void onSuccess(GetUsersResponseDto data) {
                 if (view != null) {
                     view.hideLoading();
-                    view.showSuccess("Inventory staff fetched successfully");
                 }
 
                 if (data == null || data.getUsers() == null) {
