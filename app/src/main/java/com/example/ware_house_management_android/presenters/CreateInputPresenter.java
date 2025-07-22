@@ -51,7 +51,6 @@ public class CreateInputPresenter implements CreateInputContract.Presenter {
             public void onSuccess(GetBaseItemsResponseDto data) {
                 if (view != null) {
                     view.hideLoading();
-                    view.showSuccess("Base items fetched successfully");
                 }
 
                 if (data != null && data.getBaseItems() != null) {
@@ -99,7 +98,6 @@ public class CreateInputPresenter implements CreateInputContract.Presenter {
             public void onSuccess(GetUsersResponseDto data) {
                 if (view != null) {
                     view.hideLoading();
-                    view.showSuccess("Suppliers fetched successfully");
                 }
 
                 if (data != null && data.getUsers() != null) {

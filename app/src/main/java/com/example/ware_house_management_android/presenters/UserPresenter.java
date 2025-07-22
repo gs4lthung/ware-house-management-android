@@ -41,7 +41,6 @@ public class UserPresenter implements UserContract.Presenter {
             public void onSuccess(GetUsersResponseDto data) {
                 if (view != null) {
                     view.hideLoading();
-                    view.showSuccess("Users fetched successfully");
                 }
 
                 if (data != null && data.getUsers() != null) {

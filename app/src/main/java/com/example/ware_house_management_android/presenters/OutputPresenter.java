@@ -52,7 +52,6 @@ public class OutputPresenter implements OutputContract.Presenter {
             public void onSuccess(GetOutputsResponseDto data) throws JSONException {
                 if (view != null) {
                     view.hideLoading();
-                    view.showSuccess("Outputs fetched successfully");
                 }
 
                 if (data == null) {
@@ -91,7 +90,6 @@ public class OutputPresenter implements OutputContract.Presenter {
             public void onSuccess(GetOutputByIdResponseDto data) throws JSONException {
                 if (view != null) {
                     view.hideLoading();
-                    view.showSuccess("Output details fetched successfully");
                 }
 
                 if (data == null || data.getOutput() == null) {
@@ -226,7 +224,6 @@ public class OutputPresenter implements OutputContract.Presenter {
             public void onSuccess(GetUsersResponseDto data) {
                 if (view != null) {
                     view.hideLoading();
-                    view.showSuccess("Inventory staff fetched successfully");
                 }
 
                 if (data == null || data.getUsers() == null) {

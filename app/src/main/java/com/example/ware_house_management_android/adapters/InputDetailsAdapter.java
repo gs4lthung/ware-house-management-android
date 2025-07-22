@@ -62,12 +62,24 @@ public class InputDetailsAdapter extends RecyclerView.Adapter<InputDetailsAdapte
 
             @Override
             public void afterTextChanged(Editable s) {
-                updateInputDetailsList.removeIf(item -> item.getId() == inputDetails.getId());
+                try {
+                    int actualQuantity = s.toString().isEmpty() ? inputDetails.getActualQuantity() : Integer.parseInt(s.toString());
 
-                int actualQuantity = s.toString().isEmpty() ? 0 : Integer.parseInt(s.toString());
-
-                if (actualQuantity > 0) {
-                    updateInputDetailsList.add(new UpdateInputDetailDto(inputDetails.getId(), inputDetails.getRequestQuantity(), actualQuantity, inputDetails.getInputPrice(), inputDetails.getStatus()));
+                    UpdateInputDetailDto existingDto = findUpdateInputDetailDto(inputDetails.getId());
+                    if (existingDto != null) {
+                        existingDto.setActualQuantity(actualQuantity);
+                    } else if (actualQuantity > 0) {
+                        updateInputDetailsList.add(new UpdateInputDetailDto(
+                                inputDetails.getId(),
+                                inputDetails.getRequestQuantity(),
+                                actualQuantity,
+                                inputDetails.getInputPrice() != null ? inputDetails.getInputPrice() : 0.0,
+                                inputDetails.getStatus()
+                        ));
+                    }
+                } catch (NumberFormatException e) {
+                    Log.e("InputDetailsAdapter", "Invalid actualQuantity input: " + s.toString());
+                    holder.actualQuantity.setText(String.valueOf(inputDetails.getActualQuantity()));
                 }
             }
         });
@@ -88,12 +100,24 @@ public class InputDetailsAdapter extends RecyclerView.Adapter<InputDetailsAdapte
 
             @Override
             public void afterTextChanged(Editable s) {
-                updateInputDetailsList.removeIf(item -> item.getId() == inputDetails.getId());
+                try {
+                    double inputPrice = s.toString().isEmpty() ? (inputDetails.getInputPrice() != null ? inputDetails.getInputPrice() : 0.0) : Double.parseDouble(s.toString());
 
-                Double inputPrice = s.toString().isEmpty() ? 0 : Double.parseDouble(s.toString());
-
-                if (inputPrice > 0) {
-                    updateInputDetailsList.add(new UpdateInputDetailDto(inputDetails.getId(), inputDetails.getRequestQuantity(), inputDetails.getActualQuantity(), inputPrice, inputDetails.getStatus()));
+                    UpdateInputDetailDto existingDto = findUpdateInputDetailDto(inputDetails.getId());
+                    if (existingDto != null) {
+                        existingDto.setInputPrice(inputPrice);
+                    } else if (inputPrice > 0) {
+                        updateInputDetailsList.add(new UpdateInputDetailDto(
+                                inputDetails.getId(),
+                                inputDetails.getRequestQuantity(),
+                                inputDetails.getActualQuantity(),
+                                inputPrice,
+                                inputDetails.getStatus()
+                        ));
+                    }
+                } catch (NumberFormatException e) {
+                    Log.e("InputDetailsAdapter", "Invalid inputPrice input: " + s.toString());
+                    holder.inputPrice.setText(inputDetails.getInputPrice() != null ? String.valueOf(inputDetails.getInputPrice()) : "0.0");
                 }
             }
         });
@@ -147,5 +171,14 @@ public class InputDetailsAdapter extends RecyclerView.Adapter<InputDetailsAdapte
             }
 
         }
+    }
+
+    private UpdateInputDetailDto findUpdateInputDetailDto(String id) {
+        for (UpdateInputDetailDto dto : updateInputDetailsList) {
+            if (dto.getId().equals(id)) {
+                return dto;
+            }
+        }
+        return null;
     }
 }

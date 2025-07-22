@@ -51,7 +51,6 @@ public class CreateOutputPresenter implements CreateOutputContract.Presenter {
             public void onSuccess(GetItemsResponseDto data) throws JSONException {
                 if (view != null) {
                     view.hideLoading();
-                    view.showSuccess("Items fetched successfully");
                 }
 
                 if (data != null) {
@@ -91,7 +90,6 @@ public class CreateOutputPresenter implements CreateOutputContract.Presenter {
             public void onSuccess(GetUsersResponseDto data) throws JSONException {
                 if (view != null) {
                     view.hideLoading();
-                    view.showSuccess("Customers fetched successfully");
                 }
 
                 if (data != null && data.getUsers() != null) {

@@ -41,7 +41,6 @@ public class WarehouseStoragePresenter implements WarehouseStorageContract.Prese
             public void onSuccess(GetWarehouseStoragesResponseDto data) {
                 if (view != null) {
                     view.hideLoading();
-                    view.showSuccess("Warehouse Storages fetched successfully");
                 }
 
                 if (data != null && data.getWarehouseStorages() != null) {
