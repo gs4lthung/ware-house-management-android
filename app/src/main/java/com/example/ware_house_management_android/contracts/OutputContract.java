@@ -1,6 +1,9 @@
 package com.example.ware_house_management_android.contracts;
 
+import android.widget.TextView;
+
 import com.example.ware_house_management_android.dtos.output_details.UpdateOutputDetailDto;
+import com.example.ware_house_management_android.models.UserModel;
 
 import org.json.JSONException;
 
@@ -8,6 +11,9 @@ import java.util.ArrayList;
 
 public interface OutputContract {
     interface View {
+        void showAssignStaffDialog(String outputId, ArrayList<UserModel> inventoryStaffs);
+
+        void showDatePickerDialog(TextView textView);
         void showSuccess(String message);
 
         void showError(String error);

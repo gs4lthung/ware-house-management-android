@@ -1,6 +1,9 @@
 package com.example.ware_house_management_android.contracts;
 
+import android.widget.TextView;
+
 import com.example.ware_house_management_android.dtos.input_details.UpdateInputDetailDto;
+import com.example.ware_house_management_android.models.InputModel;
 import com.example.ware_house_management_android.models.UserModel;
 
 import org.json.JSONException;
@@ -10,6 +13,10 @@ import java.util.Date;
 
 public interface InputContract {
     interface View {
+        void showAssignStaffDialog(String inputId, ArrayList<UserModel> inventoryStaffs);
+
+        void showDatePickerDialog(TextView textView);
+
         void showSuccess(String message);
 
         void showError(String error);

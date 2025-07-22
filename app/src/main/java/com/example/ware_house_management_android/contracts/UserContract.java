@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public interface UserContract {
     interface View {
-//        void showUsersList(ArrayList<UserModel> users);
+        void showUsersList(ArrayList<UserModel> users);
 
         void showSuccess(String message);
 

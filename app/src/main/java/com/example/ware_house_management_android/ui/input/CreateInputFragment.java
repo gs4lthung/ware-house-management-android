@@ -23,6 +23,7 @@ import com.example.ware_house_management_android.contracts.CreateInputContract;
 import com.example.ware_house_management_android.databinding.FragmentCreateInputBinding;
 import com.example.ware_house_management_android.dtos.inputs.CreateInputDto;
 import com.example.ware_house_management_android.dtos.input_details.CreateInputDetailsDto;
+import com.example.ware_house_management_android.models.BaseItemModel;
 import com.example.ware_house_management_android.models.UserModel;
 import com.example.ware_house_management_android.presenters.CreateInputPresenter;
 import com.example.ware_house_management_android.view_models.BaseItemViewModel;
@@ -66,18 +67,15 @@ public class CreateInputFragment extends Fragment implements CreateInputContract
             e.printStackTrace();
         }
 
-        listBaseItems = binding.recyclerViewBaseItems;
-        listBaseItems.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(this.getContext()));
-        spinnerSupplier = binding.spinnerSupplier;
+
         progressBar = binding.progressBar;
 
         createInputBaseItemAdapter = new CreateInputBaseItemAdapter(this.getContext(), null);
         baseItemViewModel.getBaseItemList().observe(getViewLifecycleOwner(), baseItems -> {
-            createInputBaseItemAdapter.setBaseItemList(baseItems);
-            listBaseItems.setAdapter(createInputBaseItemAdapter);
+            showBaseItemList(baseItems);
         });
         userViewModel.getSuppliersList().observe(getViewLifecycleOwner(), suppliers -> {
-            setSupplierSpinnerAdapter(suppliers);
+            showSuppliers(suppliers);
         });
 
 
@@ -111,7 +109,23 @@ public class CreateInputFragment extends Fragment implements CreateInputContract
         return root;
     }
 
-    private void setSupplierSpinnerAdapter(ArrayList<UserModel> suppliers) {
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
+    @Override
+    public void showBaseItemList(ArrayList<BaseItemModel> baseItems) {
+        listBaseItems = binding.recyclerViewBaseItems;
+        listBaseItems.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(this.getContext()));
+        createInputBaseItemAdapter.setBaseItemList(baseItems);
+        listBaseItems.setAdapter(createInputBaseItemAdapter);
+    }
+
+    @Override
+    public void showSuppliers(ArrayList<UserModel> suppliers) {
+        spinnerSupplier = binding.spinnerSupplier;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             ArrayAdapter<String> supplierSpinnerAdapter = new ArrayAdapter<>(
                     getContext(),
@@ -123,12 +137,6 @@ public class CreateInputFragment extends Fragment implements CreateInputContract
             spinnerSupplier.setAdapter(supplierSpinnerAdapter);
             spinnerSupplier.setSelection(0);
         }
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
     }
 
     @Override

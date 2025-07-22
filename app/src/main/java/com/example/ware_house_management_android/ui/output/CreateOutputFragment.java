@@ -24,6 +24,7 @@ import com.example.ware_house_management_android.contracts.CreateOutputContract;
 import com.example.ware_house_management_android.databinding.FragmentCreateOutputBinding;
 import com.example.ware_house_management_android.dtos.output.CreateOutputDto;
 import com.example.ware_house_management_android.dtos.output_details.CreateOutputDetailsDto;
+import com.example.ware_house_management_android.models.ItemModel;
 import com.example.ware_house_management_android.models.UserModel;
 import com.example.ware_house_management_android.presenters.CreateOutputPresenter;
 import com.example.ware_house_management_android.utils.AppUtil;
@@ -53,27 +54,23 @@ public class CreateOutputFragment extends Fragment implements CreateOutputContra
 
         createOutputPresenter = new CreateOutputPresenter(this.getContext(), userViewModel, itemViewModel, this);
         try {
-            Log.i("CreateOutputFragment", "Initializing CreateOutputPresenter");
             createOutputPresenter.getItemList();
             if (!userViewModel.hasLoadedCustomers()) createOutputPresenter.getCustomers();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        listItems = binding.recyclerViewItems;
-        listItems.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        spinnerCustomer = binding.spinnerCustomer;
+
         progressBar = binding.progressBar;
 
         createOutputItemAdapter = new CreateOutputItemAdapter(this.getContext(), null);
         itemViewModel.getCreateOutputItems().observe(getViewLifecycleOwner(), items -> {
-            createOutputItemAdapter.setItemList(items);
-            listItems.setAdapter(createOutputItemAdapter);
+            showItemList(items);
         });
 
         userViewModel.getCustomersList().observe(getViewLifecycleOwner(), customers -> {
             if (customers != null && !customers.isEmpty()) {
-                setCustomerSpinnerAdapter(customers);
+                showCustomers(customers);
             } else {
                 Log.w("CreateOutputFragment", "No customers found");
             }
@@ -106,14 +103,23 @@ public class CreateOutputFragment extends Fragment implements CreateOutputContra
         return root;
     }
 
-    private void setCustomerSpinnerAdapter(ArrayList<UserModel> customers) {
+    @Override
+    public void showItemList(ArrayList<ItemModel> items) {
+        listItems = binding.recyclerViewItems;
+        listItems.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        createOutputItemAdapter.setItemList(items);
+        listItems.setAdapter(createOutputItemAdapter);
+    }
+
+    @Override
+    public void showCustomers(ArrayList<UserModel> customers) {
+        spinnerCustomer = binding.spinnerCustomer;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             ArrayAdapter<String> customerSpinnerAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, customers.stream().map(UserModel::getFullName).toList());
             customerSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinnerCustomer.setAdapter(customerSpinnerAdapter);
             spinnerCustomer.setSelection(0);
         }
-
     }
 
     @Override
