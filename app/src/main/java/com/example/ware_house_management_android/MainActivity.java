@@ -56,7 +56,12 @@ public class MainActivity extends AppCompatActivity implements LogoutContract.Vi
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_user, R.id.nav_create_input)
+                R.id.nav_home,
+                R.id.nav_user,
+                R.id.nav_create_input,
+                R.id.nav_list_inputs,
+                R.id.nav_create_output,
+                R.id.nav_list_outputs)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -111,12 +116,14 @@ public class MainActivity extends AppCompatActivity implements LogoutContract.Vi
         Menu menu = binding.navView.getMenu();
         ArrayList<Integer> menuItems = new ArrayList<>();
         menuItems.add(R.id.nav_home);
+        menuItems.add(R.id.nav_warehouse_storage);
         switch (role) {
             case "Admin":
                 menuItems.add(R.id.nav_user);
                 break;
             case "Manager":
                 menuItems.add(R.id.nav_list_inputs);
+                menuItems.add(R.id.nav_list_outputs);
                 break;
             case "Report Staff":
                 menuItems.add(R.id.nav_create_input);
@@ -126,9 +133,13 @@ public class MainActivity extends AppCompatActivity implements LogoutContract.Vi
                 break;
             case "Inventory Staff":
                 menuItems.add(R.id.nav_list_inputs);
+                menuItems.add(R.id.nav_list_outputs);
+                break;
+            default:
+                Log.w("MainActivity", "Unknown role: " + role);
                 break;
         }
-        for (int i = 0; i < menu.size(); i++) {
+        for (int i = menu.size() - 1; i >= 0; i--) {
             MenuItem menuItem = menu.getItem(i);
             if (!menuItems.contains(menuItem.getItemId())) {
                 menu.removeItem(menuItem.getItemId());

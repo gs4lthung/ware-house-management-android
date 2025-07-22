@@ -16,6 +16,12 @@
         android:name="com.example.ware_house_management_android.ui.user.UserFragment"
         android:label="@string/menu_user"
         tools:layout="@layout/fragment_user" />
+
+    <fragment
+        android:id="@+id/nav_warehouse_storage"
+        android:name="com.example.ware_house_management_android.ui.warehouse.WarehouseStorageFragment"
+        android:label="Warehouse Storage"
+        tools:layout="@layout/fragment_warehouse_storage" />
     <fragment
         android:id="@+id/nav_create_input"
         android:name="com.example.ware_house_management_android.ui.input.CreateInputFragment"
